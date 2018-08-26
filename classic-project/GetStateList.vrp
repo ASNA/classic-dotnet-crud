@@ -1,0 +1,34 @@
+/*$B050000500*/
+DCLPROGRAM // GetStateList
+INITPROP NAME(_Version) TYPE(*INTEGER4) VALUE(131173)
+INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('GetStateList')
+INITPROP NAME(CreationID) TYPE(*BASICSTRING) VALUE('{E61344D6-CF37-4624-AC2B-B0CB6492DD32}')
+INITPROP NAME(ModifiedID) TYPE(*BASICSTRING) VALUE('{6ACE179E-631E-440C-A3D9-75D80D9084B1}')
+END
+DclDiskFile  Name(States) +
+             Type(*Input) +
+             Org(*INDEXED) +
+             Prefix(States_) +
+             ImpOpen(*Yes) +
+             FileDesc('Examples/States') +
+             DBDesc('*PUBLIC/DG Net Local')
+
+DclPList *Entry
+
+LoadStatesList()
+Return 
+
+BegSr LoadStatesList
+    DclFld x Type(*String) 
+    DclFld i Type(*Integer) Len(4) 
+
+    SetLL States Key(*Start) 
+    Read States Err(*Extended) 
+    DoWhile NOT %EOF()
+        i = i + 1
+        StatesList.Add(States_State, States_Abbrev) 
+        Read States Err(*Extended) 
+    EndDo 
+EndSr 
+
+
