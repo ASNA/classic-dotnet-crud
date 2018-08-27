@@ -6,7 +6,7 @@
 </ul>
 <h3>Control: SubFile</h3>
 <pre><code>Name = sbfCust
-Height = 5130
+Height = 5115
 Left = 180
 Tag = 'roger'
 Top = 2160
@@ -22,13 +22,12 @@ Font.Strikethrough = False
 RowHeight = 400
 ButtonHeight = 380
 ButtonWidth = 300
+RowButtons = True
 HScroll = False
 VScroll = False
-Browse = True
 NoHideSel = True
 NoLines = True
 SingleSelect = True
-WholeRows = True
 RRNFldName = 'sbfCust_RRN'
 
 SubfileField.Name0 = 'sbfCust_CMCustno'
@@ -36,11 +35,11 @@ SubfileField.Type0 = 2
 SubfileField.IntegralCount0 = 9
 SubfileField.DecimalCount0 = 0
 SubfileField.ColHeading0 = 'CustNo'
-SubfileField.ColWidth0 = -1
+SubfileField.ColWidth0 = 1500
 SubfileField.EditCode0 = 0
 SubfileField.EditWord0 = ''
-SubfileField.Browse0 = False
-SubfileField.Hidden0 = True
+SubfileField.Browse0 = True
+SubfileField.Hidden0 = False
 SubfileField.TotalBytes0 = 9
 SubfileField.SubfileFldSize0 = 32
 SubfileField.UpperCaseOnly0 = False
@@ -52,7 +51,7 @@ SubfileField.Type1 = 0
 SubfileField.IntegralCount1 = 40
 SubfileField.DecimalCount1 = 0
 SubfileField.ColHeading1 = 'Name'
-SubfileField.ColWidth1 = 6495
+SubfileField.ColWidth1 = 5295
 SubfileField.EditCode1 = 0
 SubfileField.EditWord1 = ''
 SubfileField.Browse1 = False
@@ -68,7 +67,7 @@ SubfileField.Type2 = 0
 SubfileField.IntegralCount2 = 35
 SubfileField.DecimalCount2 = 0
 SubfileField.ColHeading2 = 'Address'
-SubfileField.ColWidth2 = 6060
+SubfileField.ColWidth2 = 5445
 SubfileField.EditCode2 = 0
 SubfileField.EditWord2 = ''
 SubfileField.Browse2 = False
@@ -255,8 +254,8 @@ AutoSize = True
 <h3>Control: Frame</h3>
 <pre><code>Name = Frame1
 Height = 1008
-Left = 6480
-Top = 810
+Left = 6210
+Top = 180
 Width = 3750
 TabIndex = 5
 Caption = 'Position to'
@@ -316,32 +315,64 @@ Font.Strikethrough = False
 <h3>Control: Image</h3>
 <pre><code>Name = imagePreviousPage
 Height = 540
-Left = 11160
-Top = 1080
+Left = 7830
+Top = 1260
 Width = 540
 Picture = *NA
 </code></pre>
 <h3>Control: Image</h3>
 <pre><code>Name = imageNextPage
 Height = 480
-Left = 11700
-Top = 1080
+Left = 8370
+Top = 1260
 Width = 480
 Picture = *NA
 </code></pre>
 <h3>Control: Image</h3>
 <pre><code>Name = imageLastPage
 Height = 480
-Left = 12240
-Top = 1080
+Left = 8910
+Top = 1260
 Width = 480
 Picture = *NA
 </code></pre>
 <h3>Control: Image</h3>
 <pre><code>Name = imageFirstPage
 Height = 480
-Left = 10620
-Top = 1080
+Left = 7290
+Top = 1260
+Width = 480
+Picture = *NA
+</code></pre>
+<h3>Control: Label</h3>
+<pre><code>Name = labelMessage
+Height = 270
+Left = 270
+Top = 7380
+Width = 1005
+TabIndex = 9
+Caption = '[Message]'
+Font.Size = '9.74'
+Font.Weight = 400
+Font.Underline = False
+Font.Italic = False
+Font.Strikethrough = False
+AutoSize = True
+</code></pre>
+<h3>Control: Timer</h3>
+<pre><code>Name = timerMessage
+Height = 420
+Left = 270
+Top = 1440
+Width = 420
+Interval = 1500
+Enabled = False
+</code></pre>
+<h3>Control: Image</h3>
+<pre><code>Name = imageRefresh
+Height = 480
+Left = 6750
+Top = 1260
 Width = 480
 Picture = *NA
 </code></pre>
