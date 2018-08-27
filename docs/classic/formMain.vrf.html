@@ -224,18 +224,38 @@ program starts these labels are cleared. </p>
     <div class='code'>
       <div class="highlight"><pre><span class="nx">BEGSR</span> <span class="nx">imageRefresh</span> <span class="nx">Click</span>
     <span class="nx">sbfCust_Refresh</span><span class="p">(</span><span class="nx">TOP_ROW</span><span class="p">)</span> 
-<span class="nx">ENDSR</span>
-
-<span class="nx">BEGSR</span> <span class="nx">imageRefresh</span> <span class="nx">MouseDown</span>
+<span class="nx">ENDSR</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-13'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-13'>#</a>
+      </div>
+      <p>Toggle refresh image to show mouse down.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nx">BEGSR</span> <span class="nx">imageRefresh</span> <span class="nx">MouseDown</span>
     <span class="nx">DclSrParm</span> <span class="nx">Button</span> <span class="nx">TYPE</span><span class="p">(</span><span class="o">*</span><span class="nx">INTEGER</span><span class="p">)</span> <span class="nx">LEN</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> 
     <span class="nx">DclSrParm</span> <span class="nx">Shift</span> <span class="nx">TYPE</span><span class="p">(</span><span class="o">*</span><span class="nx">INTEGER</span><span class="p">)</span> <span class="nx">LEN</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> 
     <span class="nx">DclSrParm</span> <span class="nx">X</span> <span class="nx">TYPE</span><span class="p">(</span><span class="o">*</span><span class="nx">INTEGER</span><span class="p">)</span> <span class="nx">LEN</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> 
     <span class="nx">DclSrParm</span> <span class="nx">Y</span> <span class="nx">TYPE</span><span class="p">(</span><span class="o">*</span><span class="nx">INTEGER</span><span class="p">)</span> <span class="nx">LEN</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> 
 
     <span class="nx">LoadPicture</span> <span class="nx">File</span><span class="p">(</span><span class="s1">&#39;refresh-disabled.jpg&#39;</span><span class="p">)</span> <span class="nx">target</span><span class="p">(</span><span class="nx">imageRefresh</span><span class="p">)</span> 
-<span class="nx">ENDSR</span>
-
-<span class="nx">BEGSR</span> <span class="nx">imageRefresh</span> <span class="nx">MouseUp</span>
+<span class="nx">ENDSR</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-14'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-14'>#</a>
+      </div>
+      <p>Toggle refresh image to show mouse up.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nx">BEGSR</span> <span class="nx">imageRefresh</span> <span class="nx">MouseUp</span>
     <span class="nx">DclSrParm</span> <span class="nx">Button</span> <span class="nx">TYPE</span><span class="p">(</span><span class="o">*</span><span class="nx">INTEGER</span><span class="p">)</span> <span class="nx">LEN</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> 
     <span class="nx">DclSrParm</span> <span class="nx">Shift</span> <span class="nx">TYPE</span><span class="p">(</span><span class="o">*</span><span class="nx">INTEGER</span><span class="p">)</span> <span class="nx">LEN</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> 
     <span class="nx">DclSrParm</span> <span class="nx">X</span> <span class="nx">TYPE</span><span class="p">(</span><span class="o">*</span><span class="nx">INTEGER</span><span class="p">)</span> <span class="nx">LEN</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> 
@@ -246,10 +266,10 @@ program starts these labels are cleared. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-13'>
+  <div class='section' id='section-15'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-13'>#</a>
+        <a class='octothorpe' href='#section-15'>#</a>
       </div>
       <p>Watch for ENTER key in the textboxPositionTo textbox. </p>
     </div>
@@ -262,10 +282,10 @@ program starts these labels are cleared. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-14'>
+  <div class='section' id='section-16'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-14'>#</a>
+        <a class='octothorpe' href='#section-16'>#</a>
       </div>
       <p>Watch for an Enter keypress when ioPosition has 
 focus. End the keypress event handler by setting 
@@ -281,10 +301,10 @@ KeyAscii to EAT_KEY (0) and then position the subfile.  </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-15'>
+  <div class='section' id='section-17'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-15'>#</a>
+        <a class='octothorpe' href='#section-17'>#</a>
       </div>
       <p>The current row changed in the subfile. </p>
     </div>
@@ -294,10 +314,10 @@ KeyAscii to EAT_KEY (0) and then position the subfile.  </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-16'>
+  <div class='section' id='section-18'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-16'>#</a>
+        <a class='octothorpe' href='#section-18'>#</a>
       </div>
       <p>Read subfile record on every subfile record switch to have
 that subfile row's fields available.  The AVR Classic subfile reports 
@@ -310,10 +330,10 @@ one to it to 'translate' it to the corresponding RRN.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-17'>
+  <div class='section' id='section-19'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-17'>#</a>
+        <a class='octothorpe' href='#section-19'>#</a>
       </div>
       <p>Populate customer info panel with fields from the 
 just-read subfile row. </p>
@@ -324,10 +344,10 @@ just-read subfile row. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-18'>
+  <div class='section' id='section-20'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-18'>#</a>
+        <a class='octothorpe' href='#section-20'>#</a>
       </div>
       <p>This subfile event handler fires as the subfile row is changing.
 The subfile heading is a considered a row, just like the data rows. 
@@ -342,10 +362,10 @@ selected back to the twop row (the zeroth row).</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-19'>
+  <div class='section' id='section-21'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-19'>#</a>
+        <a class='octothorpe' href='#section-21'>#</a>
       </div>
       <p>Inhibit user moving to heading row of subfile.</p>
     </div>
@@ -354,10 +374,10 @@ selected back to the twop row (the zeroth row).</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-20'>
+  <div class='section' id='section-22'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-20'>#</a>
+        <a class='octothorpe' href='#section-22'>#</a>
       </div>
       <p>Uncomment this LeaveSr and user move the row to the top of the 
 subfile with the <code>up</code> arrow key to see the default behavior arrow
@@ -371,44 +391,157 @@ key behavior.  </p>
     <span class="nx">If</span> <span class="nx">sbfCust</span><span class="p">.</span><span class="nx">SelStartRow</span> <span class="o">&lt;</span> <span class="mi">0</span> 
         <span class="nx">sbfCust</span><span class="p">.</span><span class="nx">SetFocus</span><span class="p">()</span>
         <span class="nx">LeaveSr</span>
-    <span class="nx">EndIf</span>     
-
-    <span class="nx">If</span> <span class="nx">sbfCust</span><span class="p">.</span><span class="nx">RecChanged</span><span class="p">[</span><span class="nx">sbfCust</span><span class="p">.</span><span class="nx">SelStartRow</span><span class="p">]</span>
-        <span class="nx">Chain</span> <span class="nx">sbfCust</span> <span class="nx">Key</span><span class="p">(</span><span class="nx">sbfCust</span><span class="p">.</span><span class="nx">SelStartRow</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></pre></div>
+    <span class="nx">EndIf</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-21'>
+  <div class='section' id='section-23'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-21'>#</a>
+        <a class='octothorpe' href='#section-23'>#</a>
+      </div>
+      <p>The SelChanging event fires when the user moves the subfile to another 
+row. The subfile.Row property reports the zero-based row the user is 
+moving to (the target row), and the subfile.SelStartRow property reports
+the zero-based row the user is moving from (the source row).</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-24'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-24'>#</a>
+      </div>
+      <p>If the source row was changed attempt record edit. </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="nx">If</span> <span class="nx">sbfCust</span><span class="p">.</span><span class="nx">RecChanged</span><span class="p">[</span><span class="nx">sbfCust</span><span class="p">.</span><span class="nx">SelStartRow</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-25'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-25'>#</a>
+      </div>
+      <p>Read the changed row.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="nx">Chain</span> <span class="nx">sbfCust</span> <span class="nx">Key</span><span class="p">(</span><span class="nx">sbfCust</span><span class="p">.</span><span class="nx">SelStartRow</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-26'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-26'>#</a>
       </div>
       <p>Check for errors here. </p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>        <span class="nx">If</span> <span class="nx">ValidateInputForCustomer</span><span class="p">()</span>
-            <span class="nx">UpdateCustomer</span><span class="p">(</span><span class="nx">sbfCust_CMCustNo</span><span class="p">)</span>
-            <span class="nx">SetMessageText</span><span class="p">(</span><span class="s1">&#39;Customer changed: &#39;</span> <span class="o">+</span> <span class="o">%</span><span class="nx">CHAR</span><span class="p">(</span><span class="o">%</span><span class="nx">EDITC</span><span class="p">(</span><span class="nx">sbfCust_CMCustNo</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">)))</span>
-            <span class="nx">sbfCust</span><span class="p">.</span><span class="nx">RecChanged</span><span class="p">[</span><span class="nx">sbfCust</span><span class="p">.</span><span class="nx">SelStartRow</span><span class="p">]</span> <span class="o">=</span> <span class="o">*</span><span class="nx">False</span>
-            <span class="nx">sbfCust_PositionTo</span><span class="p">(</span><span class="nx">sbfCust_CMName</span><span class="p">)</span>
-        <span class="nx">Else</span>
-            <span class="nx">sbfCust</span><span class="p">.</span><span class="nx">Row</span> <span class="o">=</span> <span class="nx">sbfCust</span><span class="p">.</span><span class="nx">SelStartRow</span>  
+      <div class="highlight"><pre>        <span class="nx">If</span> <span class="nx">ValidateInputForCustomer</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-27'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-27'>#</a>
+      </div>
+      <p>Attempt file update.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="nx">UpdateCustomer</span><span class="p">(</span><span class="nx">sbfCust_CMCustNo</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-28'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-28'>#</a>
+      </div>
+      <p>Show message.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="nx">SetMessageText</span><span class="p">(</span><span class="s1">&#39;Customer changed: &#39;</span> <span class="o">+</span> <span class="o">%</span><span class="nx">CHAR</span><span class="p">(</span><span class="o">%</span><span class="nx">EDITC</span><span class="p">(</span><span class="nx">sbfCust_CMCustNo</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">)))</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-29'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-29'>#</a>
+      </div>
+      <p>Set row RecChanged status to false.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="nx">sbfCust</span><span class="p">.</span><span class="nx">RecChanged</span><span class="p">[</span><span class="nx">sbfCust</span><span class="p">.</span><span class="nx">SelStartRow</span><span class="p">]</span> <span class="o">=</span> <span class="o">*</span><span class="nx">False</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-30'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-30'>#</a>
+      </div>
+      <p>Position to the customer name.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="nx">sbfCust_PositionTo</span><span class="p">(</span><span class="nx">sbfCust_CMName</span><span class="p">)</span>
+        <span class="nx">Else</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-31'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-31'>#</a>
+      </div>
+      <p>If there was a validation error, move back to the 
+source row.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="nx">sbfCust</span><span class="p">.</span><span class="nx">Row</span> <span class="o">=</span> <span class="nx">sbfCust</span><span class="p">.</span><span class="nx">SelStartRow</span>  
             <span class="nx">sbfCust</span><span class="p">.</span><span class="nx">Col</span> <span class="o">=</span> <span class="nx">sbfCust</span><span class="p">.</span><span class="nx">SelStartCol</span>
         <span class="nx">EndIf</span> 
-    <span class="nx">ENdIf</span> 
-    <span class="nx">sbfCust</span><span class="p">.</span><span class="nx">SetFocus</span><span class="p">()</span>
-<span class="nx">EndSr</span>
-
-<span class="nx">BEGSR</span> <span class="nx">sbfCust</span> <span class="nx">DoubleClick</span>
+    <span class="nx">ENdIf</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-32'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-32'>#</a>
+      </div>
+      <p>Give the subfile focus.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="nx">sbfCust</span><span class="p">.</span><span class="nx">SetFocus</span><span class="p">()</span>
+<span class="nx">EndSr</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-33'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-33'>#</a>
+      </div>
+      <p>Double-click on a subfile row to select it for update.     </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nx">BEGSR</span> <span class="nx">sbfCust</span> <span class="nx">DoubleClick</span>
     <span class="nx">AttemptFullCustomerUpdate</span><span class="p">()</span>
 <span class="nx">EndSr</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-22'>
+  <div class='section' id='section-34'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-22'>#</a>
+        <a class='octothorpe' href='#section-34'>#</a>
       </div>
       <p>Clear the subfile and set its RRN to zero--making it ready for a 
 a new page. </p>
@@ -418,10 +551,10 @@ a new page. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-23'>
+  <div class='section' id='section-35'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-23'>#</a>
+        <a class='octothorpe' href='#section-35'>#</a>
       </div>
       <p>Initialize and clear subfile.</p>
     </div>
@@ -432,10 +565,10 @@ a new page. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-24'>
+  <div class='section' id='section-36'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-24'>#</a>
+        <a class='octothorpe' href='#section-36'>#</a>
       </div>
       <p>Show first page of subfile.</p>
     </div>
@@ -444,10 +577,10 @@ a new page. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-25'>
+  <div class='section' id='section-37'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-25'>#</a>
+        <a class='octothorpe' href='#section-37'>#</a>
       </div>
       <p>Position file at top of file.</p>
     </div>
@@ -458,10 +591,10 @@ a new page. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-26'>
+  <div class='section' id='section-38'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-26'>#</a>
+        <a class='octothorpe' href='#section-38'>#</a>
       </div>
       <p>Show next page of subfile. </p>
     </div>
@@ -470,10 +603,10 @@ a new page. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-27'>
+  <div class='section' id='section-39'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-27'>#</a>
+        <a class='octothorpe' href='#section-39'>#</a>
       </div>
       <p>Fill sbfCust with next group of rows from Cust's current 
 file pointer position.</p>
@@ -490,10 +623,10 @@ file pointer position.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-28'>
+  <div class='section' id='section-40'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-28'>#</a>
+        <a class='octothorpe' href='#section-40'>#</a>
       </div>
       <p>Write the subfile row.</p>
     </div>
@@ -505,10 +638,10 @@ file pointer position.</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-29'>
+  <div class='section' id='section-41'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-29'>#</a>
+        <a class='octothorpe' href='#section-41'>#</a>
       </div>
       <p>Set the enabled/disabled status of the 
 image buttons. </p>
@@ -519,10 +652,10 @@ image buttons. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-30'>
+  <div class='section' id='section-42'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-30'>#</a>
+        <a class='octothorpe' href='#section-42'>#</a>
       </div>
       <p>Explicitly set the subfile to top row (which
 implicitly refreshes the customer info
@@ -533,10 +666,10 @@ at the top of the form.)</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-31'>
+  <div class='section' id='section-43'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-31'>#</a>
+        <a class='octothorpe' href='#section-43'>#</a>
       </div>
       <p>Give focus to the subfile so its speed keys are in effect.</p>
     </div>
@@ -546,10 +679,10 @@ at the top of the form.)</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-32'>
+  <div class='section' id='section-44'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-32'>#</a>
+        <a class='octothorpe' href='#section-44'>#</a>
       </div>
       <p>Show previous page of subfile.</p>
     </div>
@@ -558,10 +691,10 @@ at the top of the form.)</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-33'>
+  <div class='section' id='section-45'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-33'>#</a>
+        <a class='octothorpe' href='#section-45'>#</a>
       </div>
       <p>Read the first row of the subfile to make that row's fields available.</p>
     </div>
@@ -570,10 +703,10 @@ at the top of the form.)</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-34'>
+  <div class='section' id='section-46'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-34'>#</a>
+        <a class='octothorpe' href='#section-46'>#</a>
       </div>
       <p>Position the file at the record in the first row.</p>
     </div>
@@ -582,10 +715,10 @@ at the top of the form.)</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-35'>
+  <div class='section' id='section-47'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-35'>#</a>
+        <a class='octothorpe' href='#section-47'>#</a>
       </div>
       <p>Read backwards from there. </p>
     </div>
@@ -594,10 +727,10 @@ at the top of the form.)</p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-36'>
+  <div class='section' id='section-48'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-36'>#</a>
+        <a class='octothorpe' href='#section-48'>#</a>
       </div>
       <p>Having read backwards a number of rows and then 
 show the page. </p>
@@ -608,10 +741,10 @@ show the page. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-37'>
+  <div class='section' id='section-49'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-37'>#</a>
+        <a class='octothorpe' href='#section-49'>#</a>
       </div>
       <p>Show last page of subfile.</p>
     </div>
@@ -620,10 +753,10 @@ show the page. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-38'>
+  <div class='section' id='section-50'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-38'>#</a>
+        <a class='octothorpe' href='#section-50'>#</a>
       </div>
       <p>Position file pointer at end of file.</p>
     </div>
@@ -632,10 +765,10 @@ show the page. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-39'>
+  <div class='section' id='section-51'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-39'>#</a>
+        <a class='octothorpe' href='#section-51'>#</a>
       </div>
       <p>Read backwards from there. </p>
     </div>
@@ -644,10 +777,10 @@ show the page. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-40'>
+  <div class='section' id='section-52'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-40'>#</a>
+        <a class='octothorpe' href='#section-52'>#</a>
       </div>
       <p>Having read backwards a number of rows and then 
 show the page. </p>
@@ -660,10 +793,10 @@ show the page. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-41'>
+  <div class='section' id='section-53'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-41'>#</a>
+        <a class='octothorpe' href='#section-53'>#</a>
       </div>
       <p>Assign fields from the Cust file to the 
 subfile. </p>
@@ -680,10 +813,10 @@ subfile. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-42'>
+  <div class='section' id='section-54'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-42'>#</a>
+        <a class='octothorpe' href='#section-54'>#</a>
       </div>
       <p>Position populated subfile at top row (the zeroth row). </p>
     </div>
@@ -695,10 +828,10 @@ subfile. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-43'>
+  <div class='section' id='section-55'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-43'>#</a>
+        <a class='octothorpe' href='#section-55'>#</a>
       </div>
       <p>The Select method selects the given row of the subfile. 
 If there are no rows in the subfile, the Select method
@@ -716,37 +849,48 @@ that be confusing later. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-44'>
+  <div class='section' id='section-56'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-44'>#</a>
+        <a class='octothorpe' href='#section-56'>#</a>
       </div>
       <p>Position subfile at a new location. </p>
     </div>
     <div class='code'>
       <div class="highlight"><pre><span class="nx">BegFunc</span> <span class="nx">sbfCust_PositionTo</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Ind</span><span class="p">)</span> 
-    <span class="nx">DclSrParm</span> <span class="nx">PositionToValue</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">String</span><span class="p">)</span>
-    <span class="nx">DclFld</span> <span class="nx">SaveName</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">String</span><span class="p">)</span></pre></div>
+    <span class="nx">DclSrParm</span> <span class="nx">PositionToName</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">String</span><span class="p">)</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-45'>
+  <div class='section' id='section-57'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-45'>#</a>
+        <a class='octothorpe' href='#section-57'>#</a>
+      </div>
+      <p>DclFld SaveName Type(*String) </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-58'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-58'>#</a>
       </div>
       <p>Is position-to value key in the file</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="nx">SetLL</span> <span class="nx">Cust</span> <span class="nx">Key</span><span class="p">(</span><span class="nx">PositionToValue</span><span class="p">)</span>
+      <div class="highlight"><pre>    <span class="nx">SetLL</span> <span class="nx">Cust</span> <span class="nx">Key</span><span class="p">(</span><span class="nx">PositionToName</span><span class="p">)</span>
     <span class="nx">If</span> <span class="p">(</span><span class="o">%</span><span class="nx">FOUND</span><span class="p">(</span><span class="nx">Cust</span><span class="p">))</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-46'>
+  <div class='section' id='section-59'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-46'>#</a>
+        <a class='octothorpe' href='#section-59'>#</a>
       </div>
       <p>If so, show the next page from there.</p>
     </div>
@@ -757,10 +901,10 @@ that be confusing later. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-47'>
+  <div class='section' id='section-60'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-47'>#</a>
+        <a class='octothorpe' href='#section-60'>#</a>
       </div>
       <p>Otherwise, reselect the subfile's top row and 
 display a message. </p>
@@ -777,10 +921,10 @@ display a message. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-48'>
+  <div class='section' id='section-61'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-48'>#</a>
+        <a class='octothorpe' href='#section-61'>#</a>
       </div>
       <p>Move fields from disk file to subfile.</p>
     </div>
@@ -789,10 +933,10 @@ display a message. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-49'>
+  <div class='section' id='section-62'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-49'>#</a>
+        <a class='octothorpe' href='#section-62'>#</a>
       </div>
       <p>Assign field values for customer info panel 
 above the subfile. </p>
@@ -804,10 +948,24 @@ above the subfile. </p>
     <span class="nx">labelCSZ</span><span class="p">.</span><span class="nx">Caption</span>       <span class="o">=</span> <span class="o">%</span><span class="nx">TRIM</span><span class="p">(</span><span class="nx">sbfCust_CMCity</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">++</span>
                              <span class="nx">sbfCust_CMState</span> <span class="o">+</span> <span class="s1">&#39;  &#39;</span> <span class="o">++</span>
                              <span class="nx">sbfCust_CMPostCode</span>
-<span class="nx">EndSr</span>
-
-<span class="nx">BegSr</span> <span class="nx">sbfCust_Refresh</span>
+<span class="nx">EndSr</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-63'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-63'>#</a>
+      </div>
+      <p>Refresh the subfile from a given name.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nx">BegSr</span> <span class="nx">sbfCust_Refresh</span>
     <span class="nx">DclSrParm</span> <span class="nx">CMName</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">String</span><span class="p">)</span> 
+
+    <span class="nx">DclFld</span> <span class="nx">SaveRow</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Integer</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+    <span class="nx">SaveRow</span> <span class="o">=</span> <span class="nx">sbfCust</span><span class="p">.</span><span class="nx">Row</span> 
 
     <span class="nx">If</span> <span class="nx">CMName</span> <span class="o">=</span> <span class="o">*</span><span class="nx">Blanks</span>   
         <span class="nx">Chain</span> <span class="nx">sbfCust</span> <span class="nx">Key</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> 
@@ -816,14 +974,15 @@ above the subfile. </p>
         <span class="nx">SetLL</span> <span class="nx">Cust</span> <span class="nx">Key</span><span class="p">(</span><span class="nx">CMName</span><span class="p">)</span>             
     <span class="nx">EndIf</span>         
     <span class="nx">sbfCust_ShowNextPage</span><span class="p">()</span>
+    <span class="nx">sbfCust_GoToRow</span><span class="p">(</span><span class="nx">SaveRow</span><span class="p">)</span>
 <span class="nx">EndSr</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-50'>
+  <div class='section' id='section-64'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-50'>#</a>
+        <a class='octothorpe' href='#section-64'>#</a>
       </div>
       <p>Poll for 'f', 'p', 'n', and 'l' keypresses to behave as accelerator keys 
 for the corresponding subfile page actions. </p>
@@ -840,16 +999,16 @@ for the corresponding subfile page actions. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-51'>
+  <div class='section' id='section-65'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-51'>#</a>
+        <a class='octothorpe' href='#section-65'>#</a>
       </div>
-      <p>SetMessageText(%CHAR(KeyAscii) + ':' + %CHAR(sbfCust.Row))</p>
+      <p>The escape key cancels an inline row edit.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="nx">If</span> <span class="nx">KeyAscii</span> <span class="o">=</span> <span class="nx">ESCAPE_KEY</span> 
-        <span class="nx">RestoreSubfileRow</span><span class="p">(</span><span class="nx">sbfCust</span><span class="p">.</span><span class="nx">Row</span><span class="p">)</span>
+      <div class="highlight"><pre>    <span class="nx">If</span> <span class="nx">KeyAscii</span> <span class="o">=</span> <span class="nx">ESCAPE_KEY</span>         
+        <span class="nx">sbfCust_Refresh</span><span class="p">(</span><span class="o">*</span><span class="nx">BLANKS</span><span class="p">)</span> 
     <span class="nx">EndIf</span> 
 
     <span class="nx">If</span> <span class="nx">sbfCust</span><span class="p">.</span><span class="nx">Browse</span> <span class="o">=</span> <span class="o">*</span><span class="nx">False</span> 
@@ -865,10 +1024,10 @@ for the corresponding subfile page actions. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-52'>
+  <div class='section' id='section-66'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-52'>#</a>
+        <a class='octothorpe' href='#section-66'>#</a>
       </div>
       <p>Set the first and previous page buttons' enabled status. </p>
     </div>
@@ -878,10 +1037,10 @@ for the corresponding subfile page actions. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-53'>
+  <div class='section' id='section-67'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-53'>#</a>
+        <a class='octothorpe' href='#section-67'>#</a>
       </div>
       <p>AVR Classic doesn't have an image button. This program uses the 
 image control to simulate image buttons. This is a little extra
@@ -906,10 +1065,10 @@ for this purpose.     </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-54'>
+  <div class='section' id='section-68'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-54'>#</a>
+        <a class='octothorpe' href='#section-68'>#</a>
       </div>
       <p>Set next and last page buttons' enabled status. </p>
     </div>
@@ -963,10 +1122,10 @@ for this purpose.     </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-55'>
+  <div class='section' id='section-69'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-55'>#</a>
+        <a class='octothorpe' href='#section-69'>#</a>
       </div>
       <p>Every page (first, previous, next, and last) are displayed 
 with the sbfCust_ShowNextPage routine. To page through the 
@@ -988,10 +1147,10 @@ pointer so that sbfCust_ShowNextPage displays the correct page.  </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-56'>
+  <div class='section' id='section-70'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-56'>#</a>
+        <a class='octothorpe' href='#section-70'>#</a>
       </div>
       <p>Set subfile row color.</p>
     </div>
@@ -1008,10 +1167,10 @@ pointer so that sbfCust_ShowNextPage displays the correct page.  </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-57'>
+  <div class='section' id='section-71'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-57'>#</a>
+        <a class='octothorpe' href='#section-71'>#</a>
       </div>
       <p>Return remainder of integer division.</p>
     </div>
@@ -1026,10 +1185,10 @@ pointer so that sbfCust_ShowNextPage displays the correct page.  </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-58'>
+  <div class='section' id='section-72'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-58'>#</a>
+        <a class='octothorpe' href='#section-72'>#</a>
       </div>
       <p>Return true if there are more records backward, given the 
 key value on the first row displayed. </p>
@@ -1045,10 +1204,10 @@ key value on the first row displayed. </p>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-59'>
+  <div class='section' id='section-73'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-59'>#</a>
+        <a class='octothorpe' href='#section-73'>#</a>
       </div>
       <p>Return true if there are more records forward, given the 
 key value on the last row displayed. </p>
@@ -1058,24 +1217,14 @@ key value on the last row displayed. </p>
     <span class="nx">Chain</span> <span class="nx">sbfCust</span> <span class="nx">Key</span><span class="p">(</span><span class="nx">sbfCust</span><span class="p">.</span><span class="nx">RowCount</span><span class="p">)</span>  
     <span class="nx">SetGT</span> <span class="nx">Cust</span> <span class="nx">Key</span><span class="p">(</span><span class="nx">sbfCust_CMName</span><span class="p">)</span> 
     <span class="nx">LeaveSr</span> <span class="o">%</span><span class="nx">Found</span><span class="p">(</span><span class="nx">Cust</span><span class="p">)</span> 
-<span class="nx">EndFunc</span> 
-
-
-<span class="nx">BegSr</span> <span class="nx">RestoreSubfileRow</span> 
-    <span class="nx">DclSrParm</span> <span class="nx">Row</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Integer</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> 
-
-    <span class="nx">Chain</span> <span class="nx">sbfCust</span> <span class="nx">Key</span><span class="p">(</span><span class="nx">Row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="nx">sbfCust_CMName</span> <span class="o">=</span> <span class="nx">labelName</span><span class="p">.</span><span class="nx">Caption</span> 
-    <span class="nx">sbfCust_CMAddr1</span> <span class="o">=</span> <span class="nx">labelAddress</span><span class="p">.</span><span class="nx">Caption</span> 
-    <span class="nx">Write</span> <span class="nx">sbfCust</span> 
-<span class="nx">EndSr</span></pre></div>
+<span class="nx">EndFunc</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
-  <div class='section' id='section-60'>
+  <div class='section' id='section-74'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-60'>#</a>
+        <a class='octothorpe' href='#section-74'>#</a>
       </div>
       <h3>Creating images for AVR class'c image control.</h3>
 <p>The <a href="https://fontawesome.com/icons">FontAwesome</a> site provides free SVG 
@@ -1104,9 +1253,19 @@ PNG files. </p>
 
     <span class="nx">Chain</span> <span class="nx">sbfCust</span> <span class="nx">Key</span><span class="p">(</span><span class="nx">RRN</span><span class="p">)</span> 
     <span class="nx">LeaveSr</span> <span class="nx">Value</span><span class="p">(</span><span class="nx">sbfCust_CMname</span> <span class="o">=</span> <span class="nx">CMName</span><span class="p">)</span>
-<span class="nx">EndFunc</span> 
-
-<span class="nx">BegSr</span> <span class="nx">AttemptFullCustomerUpdate</span>
+<span class="nx">EndFunc</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-75'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-75'>#</a>
+      </div>
+      <p>Call form to update customer. </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nx">BegSr</span> <span class="nx">AttemptFullCustomerUpdate</span>
     <span class="nx">DclFld</span> <span class="nx">CMName</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Char</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> 
     <span class="nx">DclFld</span> <span class="nx">Updated</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Char</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> 
     <span class="nx">DclFld</span> <span class="nx">CurrentRow</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Integer</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> 

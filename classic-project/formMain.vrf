@@ -20,7 +20,7 @@ INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
 ENDPROP
 INITPROP NAME(StartUpPosition) TYPE(*INTEGER2) VALUE(1)
 INITPROP NAME(CreationID) TYPE(*BASICSTRING) VALUE('{BE755B52-EDC3-4801-AA40-8FE751378CD2}')
-INITPROP NAME(ModifiedID) TYPE(*BASICSTRING) VALUE('{86A411B9-9886-4D90-96ED-A85A7B134190}')
+INITPROP NAME(ModifiedID) TYPE(*BASICSTRING) VALUE('{1E3330DF-F5DF-4D1B-85A0-ABD3B8D16143}')
 DCLMENU PARENT(formMain) // mnuForm1
 INITPROP NAME(_Version) TYPE(*INTEGER4) VALUE(131176)
 INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('mnuForm1')
@@ -55,12 +55,12 @@ ENDPROP
 INITPROP NAME(RowHeight) TYPE(*INTEGER4) VALUE(400)
 INITPROP NAME(ButtonHeight) TYPE(*INTEGER4) VALUE(380)
 INITPROP NAME(ButtonWidth) TYPE(*INTEGER4) VALUE(300)
-INITPROP NAME(RowButtons) TYPE(*BOOLEAN) VALUE(255)
+INITPROP NAME(RowButtons) TYPE(*BOOLEAN) VALUE(-1)
 INITPROP NAME(HScroll) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(VScroll) TYPE(*BOOLEAN) VALUE(0)
-INITPROP NAME(NoHideSel) TYPE(*BOOLEAN) VALUE(255)
-INITPROP NAME(NoLines) TYPE(*BOOLEAN) VALUE(255)
-INITPROP NAME(SingleSelect) TYPE(*BOOLEAN) VALUE(255)
+INITPROP NAME(NoHideSel) TYPE(*BOOLEAN) VALUE(-1)
+INITPROP NAME(NoLines) TYPE(*BOOLEAN) VALUE(-1)
+INITPROP NAME(SingleSelect) TYPE(*BOOLEAN) VALUE(-1)
 INITPROP NAME(RRNFldName) TYPE(*BASICSTRING) VALUE('sbfCust_RRN')
 DCLPROP NAME(Fields) TYPE(*BLOBPROPSET) CLSID('{C263D36E-452D-4934-8E90-141DD8DECC1D}')
 INITPROP NAME(Name0) TYPE(*BASICSTRING) VALUE('sbfCust_CMCustno')
@@ -269,7 +269,7 @@ INITPROP NAME(Underline) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Italic) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
 ENDPROP
-INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(255)
+INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(-1)
 INITPROP NAME(UseMnemonic) TYPE(*BOOLEAN) VALUE(0)
 DCLCTL CLSID('{9A541647-88B8-11CF-A6E2-00801E0111FB}') PARENT(Frame2) // labelAddress
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
@@ -298,7 +298,7 @@ INITPROP NAME(Underline) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Italic) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
 ENDPROP
-INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(255)
+INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(-1)
 DCLCTL CLSID('{9A541647-88B8-11CF-A6E2-00801E0111FB}') PARENT(Frame2) // labelCSZ
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
 INITPROP NAME(_PersistType) TYPE(*INTEGER2) VALUE(3)
@@ -326,7 +326,7 @@ INITPROP NAME(Underline) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Italic) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
 ENDPROP
-INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(255)
+INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(-1)
 DCLCTL CLSID('{9A54164F-88B8-11CF-A6E2-00801E0111FB}') PARENT(formMain) // Frame1
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
 INITPROP NAME(_PersistType) TYPE(*INTEGER2) VALUE(3)
@@ -403,7 +403,7 @@ INITPROP NAME(Caption) TYPE(*BASICSTRING) VALUE('subfile row color 1')
 INITPROP NAME(BackColor) TYPE(*INTEGER4) VALUE(16777215)
 DCLPROP NAME(Font) TYPE(*BLOBPROPSET) CLSID('{0BE35203-8F91-11CE-9DE3-00AA004BB851}')
 INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('MS Sans Serif')
-INITPROP NAME(Size) TYPE(*CURRENCY) VALUE('9.74')
+INITPROP NAME(Size) TYPE(*CURRENCY) VALUE('9.75')
 INITPROP NAME(Charset) TYPE(*INTEGER2) VALUE(0)
 INITPROP NAME(Weight) TYPE(*INTEGER2) VALUE(400)
 INITPROP NAME(Underline) TYPE(*BOOLEAN) VALUE(0)
@@ -432,7 +432,7 @@ INITPROP NAME(Caption) TYPE(*BASICSTRING) VALUE('subfile row color 2')
 INITPROP NAME(BackColor) TYPE(*INTEGER4) VALUE(16317915)
 DCLPROP NAME(Font) TYPE(*BLOBPROPSET) CLSID('{0BE35203-8F91-11CE-9DE3-00AA004BB851}')
 INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('MS Sans Serif')
-INITPROP NAME(Size) TYPE(*CURRENCY) VALUE('9.74')
+INITPROP NAME(Size) TYPE(*CURRENCY) VALUE('9.75')
 INITPROP NAME(Charset) TYPE(*INTEGER2) VALUE(0)
 INITPROP NAME(Weight) TYPE(*INTEGER2) VALUE(400)
 INITPROP NAME(Underline) TYPE(*BOOLEAN) VALUE(0)
@@ -527,14 +527,14 @@ INITPROP NAME(_StockProps) TYPE(*INTEGER4) VALUE(111)
 INITPROP NAME(Caption) TYPE(*BASICSTRING) VALUE('[Message]')
 DCLPROP NAME(Font) TYPE(*BLOBPROPSET) CLSID('{0BE35203-8F91-11CE-9DE3-00AA004BB851}')
 INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('MS Sans Serif')
-INITPROP NAME(Size) TYPE(*CURRENCY) VALUE('9.74')
+INITPROP NAME(Size) TYPE(*CURRENCY) VALUE('9.75')
 INITPROP NAME(Charset) TYPE(*INTEGER2) VALUE(0)
 INITPROP NAME(Weight) TYPE(*INTEGER2) VALUE(400)
 INITPROP NAME(Underline) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Italic) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
 ENDPROP
-INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(255)
+INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(-1)
 DCLCTL CLSID('{8DC04C91-E0F4-11CF-9EDA-00A024D72D2B}') PARENT(formMain) // timerMessage
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
 INITPROP NAME(_PersistType) TYPE(*INTEGER2) VALUE(3)
@@ -671,6 +671,7 @@ BEGSR imageRefresh Click
     sbfCust_Refresh(TOP_ROW) 
 ENDSR
 
+// Toggle refresh image to show mouse down.
 BEGSR imageRefresh MouseDown
     DclSrParm Button TYPE(*INTEGER) LEN(2) 
     DclSrParm Shift TYPE(*INTEGER) LEN(2) 
@@ -680,6 +681,7 @@ BEGSR imageRefresh MouseDown
     LoadPicture File('refresh-disabled.jpg') target(imageRefresh) 
 ENDSR
 
+// Toggle refresh image to show mouse up.
 BEGSR imageRefresh MouseUp
     DclSrParm Button TYPE(*INTEGER) LEN(2) 
     DclSrParm Shift TYPE(*INTEGER) LEN(2) 
@@ -745,23 +747,38 @@ BegSr sbfCust SelChanging
         LeaveSr
     EndIf     
 
+    // The SelChanging event fires when the user moves the subfile to another 
+    // row. The subfile.Row property reports the zero-based row the user is 
+    // moving to (the target row), and the subfile.SelStartRow property reports
+    // the zero-based row the user is moving from (the source row).
+
+    // If the source row was changed attempt record edit. 
     If sbfCust.RecChanged[sbfCust.SelStartRow]
+        // Read the changed row.
         Chain sbfCust Key(sbfCust.SelStartRow + 1)
 
         // Check for errors here. 
         If ValidateInputForCustomer()
+            // Attempt file update.
             UpdateCustomer(sbfCust_CMCustNo)
+            // Show message.
             SetMessageText('Customer changed: ' + %CHAR(%EDITC(sbfCust_CMCustNo, '1')))
+            // Set row RecChanged status to false.
             sbfCust.RecChanged[sbfCust.SelStartRow] = *False
+            // Position to the customer name.
             sbfCust_PositionTo(sbfCust_CMName)
         Else
+            // If there was a validation error, move back to the 
+            // source row.
             sbfCust.Row = sbfCust.SelStartRow  
             sbfCust.Col = sbfCust.SelStartCol
         EndIf 
     ENdIf 
+    // Give the subfile focus.
     sbfCust.SetFocus()
 EndSr
 
+// Double-click on a subfile row to select it for update.     
 BEGSR sbfCust DoubleClick
     AttemptFullCustomerUpdate()
 EndSr 
@@ -870,11 +887,11 @@ EndSr
  
 // Position subfile at a new location. 
 BegFunc sbfCust_PositionTo Type(*Ind) 
-    DclSrParm PositionToValue Type(*String)
-    DclFld SaveName Type(*String) 
+    DclSrParm PositionToName Type(*String)
+//    DclFld SaveName Type(*String) 
     
     // Is position-to value key in the file
-    SetLL Cust Key(PositionToValue)
+    SetLL Cust Key(PositionToName)
     If (%FOUND(Cust))
         // If so, show the next page from there.
         sbfCust_ShowNextPage()        
@@ -903,8 +920,13 @@ BegSr sbfCust_SetInfoDisplay
                              sbfCust_CMPostCode
 EndSr
 
+// Refresh the subfile from a given name.
 BegSr sbfCust_Refresh
     DclSrParm CMName Type(*String) 
+
+    DclFld SaveRow Type(*Integer) Len(4)
+
+    SaveRow = sbfCust.Row 
 
     If CMName = *Blanks   
         Chain sbfCust Key(1) 
@@ -913,6 +935,7 @@ BegSr sbfCust_Refresh
         SetLL Cust Key(CMName)             
     EndIf         
     sbfCust_ShowNextPage()
+    sbfCust_GoToRow(SaveRow)
 EndSr 
 
 // Poll for 'f', 'p', 'n', and 'l' keypresses to behave as accelerator keys 
@@ -926,10 +949,9 @@ BEGSR sbfCust KeyPress
     DclConst LOWER_P_KEY Value(112)
     DclConst LOWER_L_KEY Value(108)
 
-    // SetMessageText(%CHAR(KeyAscii) + ':' + %CHAR(sbfCust.Row))
-
-    If KeyAscii = ESCAPE_KEY 
-        RestoreSubfileRow(sbfCust.Row)
+    // The escape key cancels an inline row edit.
+    If KeyAscii = ESCAPE_KEY         
+        sbfCust_Refresh(*BLANKS) 
     EndIf 
 
     If sbfCust.Browse = *False 
@@ -1068,16 +1090,6 @@ BegFunc MoreRecordsForward Type(*Ind)
     LeaveSr %Found(Cust) 
 EndFunc 
 
-
-BegSr RestoreSubfileRow 
-    DclSrParm Row Type(*Integer) Len(4) 
-
-    Chain sbfCust Key(Row + 1)
-    sbfCust_CMName = labelName.Caption 
-    sbfCust_CMAddr1 = labelAddress.Caption 
-    Write sbfCust 
-EndSr
-
 // ### Creating images for AVR class'c image control. 
 // The [FontAwesome](https://fontawesome.com/icons) site provides free SVG 
 // images for Web development. SVG images aren't much help to AVR Classic, 
@@ -1106,6 +1118,7 @@ BegFunc CompareNameToSubfileRowName Type(*Boolean)
     LeaveSr Value(sbfCust_CMname = CMName)
 EndFunc 
 
+// Call form to update customer. 
 BegSr AttemptFullCustomerUpdate
     DclFld CMName Type(*Char) Len(40) 
     DclFld Updated Type(*Char) Len(1) 
