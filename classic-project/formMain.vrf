@@ -20,7 +20,7 @@ INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
 ENDPROP
 INITPROP NAME(StartUpPosition) TYPE(*INTEGER2) VALUE(1)
 INITPROP NAME(CreationID) TYPE(*BASICSTRING) VALUE('{BE755B52-EDC3-4801-AA40-8FE751378CD2}')
-INITPROP NAME(ModifiedID) TYPE(*BASICSTRING) VALUE('{85971D8B-38AD-4F06-8B26-AAD2DB78B8A9}')
+INITPROP NAME(ModifiedID) TYPE(*BASICSTRING) VALUE('{86A411B9-9886-4D90-96ED-A85A7B134190}')
 DCLMENU PARENT(formMain) // mnuForm1
 INITPROP NAME(_Version) TYPE(*INTEGER4) VALUE(131176)
 INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('mnuForm1')
@@ -55,12 +55,12 @@ ENDPROP
 INITPROP NAME(RowHeight) TYPE(*INTEGER4) VALUE(400)
 INITPROP NAME(ButtonHeight) TYPE(*INTEGER4) VALUE(380)
 INITPROP NAME(ButtonWidth) TYPE(*INTEGER4) VALUE(300)
-INITPROP NAME(RowButtons) TYPE(*BOOLEAN) VALUE(-1)
+INITPROP NAME(RowButtons) TYPE(*BOOLEAN) VALUE(255)
 INITPROP NAME(HScroll) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(VScroll) TYPE(*BOOLEAN) VALUE(0)
-INITPROP NAME(NoHideSel) TYPE(*BOOLEAN) VALUE(-1)
-INITPROP NAME(NoLines) TYPE(*BOOLEAN) VALUE(-1)
-INITPROP NAME(SingleSelect) TYPE(*BOOLEAN) VALUE(-1)
+INITPROP NAME(NoHideSel) TYPE(*BOOLEAN) VALUE(255)
+INITPROP NAME(NoLines) TYPE(*BOOLEAN) VALUE(255)
+INITPROP NAME(SingleSelect) TYPE(*BOOLEAN) VALUE(255)
 INITPROP NAME(RRNFldName) TYPE(*BASICSTRING) VALUE('sbfCust_RRN')
 DCLPROP NAME(Fields) TYPE(*BLOBPROPSET) CLSID('{C263D36E-452D-4934-8E90-141DD8DECC1D}')
 INITPROP NAME(Name0) TYPE(*BASICSTRING) VALUE('sbfCust_CMCustno')
@@ -269,7 +269,7 @@ INITPROP NAME(Underline) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Italic) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
 ENDPROP
-INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(-1)
+INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(255)
 INITPROP NAME(UseMnemonic) TYPE(*BOOLEAN) VALUE(0)
 DCLCTL CLSID('{9A541647-88B8-11CF-A6E2-00801E0111FB}') PARENT(Frame2) // labelAddress
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
@@ -298,7 +298,7 @@ INITPROP NAME(Underline) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Italic) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
 ENDPROP
-INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(-1)
+INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(255)
 DCLCTL CLSID('{9A541647-88B8-11CF-A6E2-00801E0111FB}') PARENT(Frame2) // labelCSZ
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
 INITPROP NAME(_PersistType) TYPE(*INTEGER2) VALUE(3)
@@ -326,14 +326,14 @@ INITPROP NAME(Underline) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Italic) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
 ENDPROP
-INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(-1)
+INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(255)
 DCLCTL CLSID('{9A54164F-88B8-11CF-A6E2-00801E0111FB}') PARENT(formMain) // Frame1
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
 INITPROP NAME(_PersistType) TYPE(*INTEGER2) VALUE(3)
 INITPROP NAME(Height) TYPE(*INTEGER4) VALUE(1008)
-INITPROP NAME(Left) TYPE(*INTEGER4) VALUE(6480)
+INITPROP NAME(Left) TYPE(*INTEGER4) VALUE(6210)
 INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('Frame1')
-INITPROP NAME(Top) TYPE(*INTEGER4) VALUE(810)
+INITPROP NAME(Top) TYPE(*INTEGER4) VALUE(180)
 INITPROP NAME(Width) TYPE(*INTEGER4) VALUE(3750)
 INITPROP NAME(TabIndex) TYPE(*INTEGER2) VALUE(5)
 INITPROP NAME(LicKey) TYPE(*BASICSTRING) VALUE('No License Key')
@@ -443,9 +443,9 @@ DCLCTL CLSID('{9A541643-88B8-11CF-A6E2-00801E0111FB}') PARENT(formMain) // image
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
 INITPROP NAME(_PersistType) TYPE(*INTEGER2) VALUE(3)
 INITPROP NAME(Height) TYPE(*INTEGER4) VALUE(540)
-INITPROP NAME(Left) TYPE(*INTEGER4) VALUE(10980)
+INITPROP NAME(Left) TYPE(*INTEGER4) VALUE(7830)
 INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('imagePreviousPage')
-INITPROP NAME(Top) TYPE(*INTEGER4) VALUE(1080)
+INITPROP NAME(Top) TYPE(*INTEGER4) VALUE(1260)
 INITPROP NAME(Width) TYPE(*INTEGER4) VALUE(540)
 INITPROP NAME(LicKey) TYPE(*BASICSTRING) VALUE('No License Key')
 INITPROP NAME(ServerName) TYPE(*BASICSTRING) VALUE('avrrt50.dll')
@@ -460,9 +460,9 @@ DCLCTL CLSID('{9A541643-88B8-11CF-A6E2-00801E0111FB}') PARENT(formMain) // image
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
 INITPROP NAME(_PersistType) TYPE(*INTEGER2) VALUE(3)
 INITPROP NAME(Height) TYPE(*INTEGER4) VALUE(480)
-INITPROP NAME(Left) TYPE(*INTEGER4) VALUE(11520)
+INITPROP NAME(Left) TYPE(*INTEGER4) VALUE(8370)
 INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('imageNextPage')
-INITPROP NAME(Top) TYPE(*INTEGER4) VALUE(1080)
+INITPROP NAME(Top) TYPE(*INTEGER4) VALUE(1260)
 INITPROP NAME(Width) TYPE(*INTEGER4) VALUE(480)
 INITPROP NAME(LicKey) TYPE(*BASICSTRING) VALUE('No License Key')
 INITPROP NAME(ServerName) TYPE(*BASICSTRING) VALUE('avrrt50.dll')
@@ -477,9 +477,9 @@ DCLCTL CLSID('{9A541643-88B8-11CF-A6E2-00801E0111FB}') PARENT(formMain) // image
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
 INITPROP NAME(_PersistType) TYPE(*INTEGER2) VALUE(3)
 INITPROP NAME(Height) TYPE(*INTEGER4) VALUE(480)
-INITPROP NAME(Left) TYPE(*INTEGER4) VALUE(12060)
+INITPROP NAME(Left) TYPE(*INTEGER4) VALUE(8910)
 INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('imageLastPage')
-INITPROP NAME(Top) TYPE(*INTEGER4) VALUE(1080)
+INITPROP NAME(Top) TYPE(*INTEGER4) VALUE(1260)
 INITPROP NAME(Width) TYPE(*INTEGER4) VALUE(480)
 INITPROP NAME(LicKey) TYPE(*BASICSTRING) VALUE('No License Key')
 INITPROP NAME(ServerName) TYPE(*BASICSTRING) VALUE('avrrt50.dll')
@@ -494,9 +494,9 @@ DCLCTL CLSID('{9A541643-88B8-11CF-A6E2-00801E0111FB}') PARENT(formMain) // image
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
 INITPROP NAME(_PersistType) TYPE(*INTEGER2) VALUE(3)
 INITPROP NAME(Height) TYPE(*INTEGER4) VALUE(480)
-INITPROP NAME(Left) TYPE(*INTEGER4) VALUE(10440)
+INITPROP NAME(Left) TYPE(*INTEGER4) VALUE(7290)
 INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('imageFirstPage')
-INITPROP NAME(Top) TYPE(*INTEGER4) VALUE(1080)
+INITPROP NAME(Top) TYPE(*INTEGER4) VALUE(1260)
 INITPROP NAME(Width) TYPE(*INTEGER4) VALUE(480)
 INITPROP NAME(LicKey) TYPE(*BASICSTRING) VALUE('No License Key')
 INITPROP NAME(ServerName) TYPE(*BASICSTRING) VALUE('avrrt50.dll')
@@ -534,7 +534,7 @@ INITPROP NAME(Underline) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Italic) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
 ENDPROP
-INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(-1)
+INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(255)
 DCLCTL CLSID('{8DC04C91-E0F4-11CF-9EDA-00A024D72D2B}') PARENT(formMain) // timerMessage
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
 INITPROP NAME(_PersistType) TYPE(*INTEGER2) VALUE(3)
@@ -553,6 +553,23 @@ INITPROP NAME(_ExtentY) TYPE(*INTEGER4) VALUE(741)
 INITPROP NAME(_StockProps) TYPE(*INTEGER4) VALUE(0)
 INITPROP NAME(Interval) TYPE(*INTEGER4) VALUE(1500)
 INITPROP NAME(Enabled) TYPE(*BOOLEAN) VALUE(0)
+DCLCTL CLSID('{9A541643-88B8-11CF-A6E2-00801E0111FB}') PARENT(formMain) // imageRefresh
+INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
+INITPROP NAME(_PersistType) TYPE(*INTEGER2) VALUE(3)
+INITPROP NAME(Height) TYPE(*INTEGER4) VALUE(480)
+INITPROP NAME(Left) TYPE(*INTEGER4) VALUE(6750)
+INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('imageRefresh')
+INITPROP NAME(Top) TYPE(*INTEGER4) VALUE(1260)
+INITPROP NAME(Width) TYPE(*INTEGER4) VALUE(480)
+INITPROP NAME(LicKey) TYPE(*BASICSTRING) VALUE('No License Key')
+INITPROP NAME(ServerName) TYPE(*BASICSTRING) VALUE('avrrt50.dll')
+INITPROP NAME(AllowClearReset) TYPE(*BOOLEAN) VALUE(0)
+INITPROP NAME(DftPropType) TYPE(*INTEGER2) VALUE(9)
+INITPROP NAME(_Version) TYPE(*INTEGER4) VALUE(131173)
+INITPROP NAME(_ExtentX) TYPE(*INTEGER4) VALUE(847)
+INITPROP NAME(_ExtentY) TYPE(*INTEGER4) VALUE(847)
+INITPROP NAME(_StockProps) TYPE(*INTEGER4) VALUE(224)
+INITPROP NAME(Picture) TYPE(*BLOB) VALUE('PropBagBlob0004')
 END
 // [Return to repo](https://github.com/ASNA/classic-dotnet-navgrid)
 // ### AVR Classic program to demonstrate a simple subfile for customer selection.
@@ -566,6 +583,9 @@ END
 // for navigation through a file. Once a row is located, the user would initiate 
 // an action. That action isn't shown in the is example; this example focuses on 
 // populating and navigating the subfile. 
+// 90, 88 89
+// 195, 195, 195
+
 // ---
 
 
@@ -624,23 +644,6 @@ sbfCust_ShowFirstPage()
  
 // End of mainline.
 
-
-BegFunc UpdateCustomer Type(*Boolean) 
-    DclSrParm CustomerNumber Type(*Integer) Len(4) 
-
-    Chain CustUpdate Key(CustomerNumber) Err(*Extended) 
-    If %Found() 
-        Cust_CMName = sbfCust_CMName
-        Cust_CMAddr1 = sbfCust_CMAddr1
-        Update CustUpdate    
-        LeaveSr *True
-    Else 
-        Unlock CustUpdate
-        LeaveSr *False
-    EndIf
-EndFunc 
-
-
 // First page requested.
 BEGSR imageFirstPage Click
     sbfCust_ShowFirstPage() 
@@ -658,9 +661,32 @@ BEGSR imagePreviousPage Click
     sbfCust_ShowPreviousPage()
 ENDSR
 
-// Last page requested.
+// Last page requested. 
 BEGSR imageLastPage Click
     sbfCust_ShowLastPage()  
+ENDSR
+
+// Refresh subfile from top row. 
+BEGSR imageRefresh Click
+    sbfCust_Refresh(TOP_ROW) 
+ENDSR
+
+BEGSR imageRefresh MouseDown
+    DclSrParm Button TYPE(*INTEGER) LEN(2) 
+    DclSrParm Shift TYPE(*INTEGER) LEN(2) 
+    DclSrParm X TYPE(*INTEGER) LEN(4) 
+    DclSrParm Y TYPE(*INTEGER) LEN(4) 
+
+    LoadPicture File('refresh-disabled.jpg') target(imageRefresh) 
+ENDSR
+
+BEGSR imageRefresh MouseUp
+    DclSrParm Button TYPE(*INTEGER) LEN(2) 
+    DclSrParm Shift TYPE(*INTEGER) LEN(2) 
+    DclSrParm X TYPE(*INTEGER) LEN(4) 
+    DclSrParm Y TYPE(*INTEGER) LEN(4) 
+
+    LoadPicture File('refresh.jpg') target(imageRefresh) 
 ENDSR
 
 // Watch for ENTER key in the textboxPositionTo textbox. 
@@ -736,21 +762,9 @@ BegSr sbfCust SelChanging
     sbfCust.SetFocus()
 EndSr
 
-BegFunc ValidateInputForCustomer Type(*Boolean)
-    DclFld Valid Type(*Boolean)
-
-    If sbfCust_CMName = *Blanks  
-        SetMessageText('Please enter a name')
-        LeaveSr *False
-    EndIf 
-
-    If sbfCust_CMAddr1 = *Blanks  
-        SetMessageText('Please enter an address')
-        LeaveSr *False
-    EndIf 
-
-    LeaveSr *True 
-EndFunc 
+BEGSR sbfCust DoubleClick
+    AttemptFullCustomerUpdate()
+EndSr 
 
 // Clear the subfile and set its RRN to zero--making it ready for a 
 // a new page. 
@@ -760,65 +774,13 @@ BegSr sbfCust_Initialize
     sbfCust.ClearObj()
 EndSr
 
-// Set the first and previous page buttons' enabled status. 
-BegSr SetLeftButtonsStatus
-    DclSrParm Enabled Type(*Ind) 
-
-    // AVR Classic doesn't have an image button. This program uses the 
-    // image control to simulate image buttons. This is a little extra
-    // work because you need enabled and disabled images, but it 
-    // removes dependence on a third-party button control. See the 
-    // note at the bottom of this page to read about a way to create images
-    // for this purpose.     
-    If (Enabled)
-        LoadPicture File('left-end-arrow.jpg') target(imageFirstPage) 
-        LoadPicture File('left-arrow.jpg') target(imagePreviousPage) 
-        imageFirstPage.Enabled = *True
-        imagePreviousPage.Enabled = *True 
-    Else
-        LoadPicture File('left-end-arrow-disabled.jpg') target(imageFirstPage) 
-        LoadPicture File('left-arrow-disabled.jpg') target(imagePreviousPage) 
-        imageFirstPage.Enabled = *False
-        imagePreviousPage.Enabled = *False
-    EndIf  
-EndSr 
-
-// Set next and last page buttons' enabled status. 
-BegSr SetRightButtonsStatus
-    DclSrParm Enabled Type(*Ind) 
-    
-    If (Enabled)
-        LoadPicture File('right-end-arrow.jpg') target(imageLastPage) 
-        LoadPicture File('right-arrow.jpg') target(imageNextPage) 
-        imageLastPage.Enabled = *True
-        imageNextPage.Enabled = *True 
-    Else
-        LoadPicture File('right-end-arrow-disabled.jpg') target(imageLastPage) 
-        LoadPicture File('right-arrow-disabled.jpg') target(imageNextPage) 
-        imageLastPage.Enabled = *False
-        imageNextPage.Enabled = *False 
-    EndIf  
-EndSr 
-
-BegSr sbfCust_AssignFields
-    // Assign fields from the Cust file to the 
-    // subfile. 
-    sbfCust_RRN = sbfCust.RowCount + 1
-    sbfCust_CMCustNo = Cust_CMCustNo 
-    sbfCust_CMName = Cust_CMName
-    sbfCust_CMAddr1 = Cust_CMAddr1
-    sbfCust_CMCity = Cust_CMCity
-    sbfCust_CMState = Cust_CMState
-    sbfCust_CMPostCode = Cust_CMPostCode
-EndSr
-
 // Show first page of subfile.
 BegSr sbfCust_ShowFirstPage
     // Position file at top of file.
     SetLL Cust Key(*Start) 
     sbfCust_ShowNextPage()
 EndSr
- 
+
 // Show next page of subfile. 
 BegSr sbfCust_ShowNextPage
     // Fill sbfCust with next group of rows from Cust's current 
@@ -876,20 +838,16 @@ BegSr sbfCust_ShowLastPage
     sbfCust_ShowNextPage()
 EndSr 
 
-// Every page (first, previous, next, and last) are displayed 
-// with the sbfCust_ShowNextPage routine. To page through the 
-// file backwards, this routine reads backwards through the file 
-// SUBFILE_ROWS + 1 rows. It does this to position the file 
-// pointer so that sbfCust_ShowNextPage displays the correct page.  
-BegSr ReadCustOnePageBackwards
-    DclFld BegOfFile  Type( *Boolean )
-
-    Do FromVal(1) ToVal(SUBFILE_ROWS + 1)
-        ReadP Cust BOF(BegOfFile)
-        If BegOfFile
-            SetLL Cust Key(*Start) 
-        EndIf
-    EndDo
+BegSr sbfCust_AssignFields
+    // Assign fields from the Cust file to the 
+    // subfile. 
+    sbfCust_RRN = sbfCust.RowCount + 1
+    sbfCust_CMCustNo = Cust_CMCustNo 
+    sbfCust_CMName = Cust_CMName
+    sbfCust_CMAddr1 = Cust_CMAddr1
+    sbfCust_CMCity = Cust_CMCity
+    sbfCust_CMState = Cust_CMState
+    sbfCust_CMPostCode = Cust_CMPostCode
 EndSr
 
 // Position populated subfile at top row (the zeroth row). 
@@ -944,44 +902,6 @@ BegSr sbfCust_SetInfoDisplay
                              sbfCust_CMState + '  ' ++
                              sbfCust_CMPostCode
 EndSr
- 
-// Set subfile row color.
-BegSr SetRowColor 
-    DclSrParm CurrentRow   Type(*Integer) Len(4)
-
-    If IsEven(CurrentRow)
-        sbfCust.RecBackColor[CurrentRow] = labelEvenRowColor.BackColor
-    Else
-        sbfCust.RecBackColor[CurrentRow] = labelOddRowColor.BackColor
-    EndIf
-EndSr
-
-// Return remainder of integer division.
-BegFunc IsEven Type(*Ind) 
-    DclSrParm Value Type(*Integer) Len(4) 
-
-    DclConst EVEN_DIVISOR Value(2) 
-
-    LeaveSr Value(%REM(Value, EVEN_DIVISOR) = 0)
-EndFunc  
-
-// Return true if there are more records backward, given the 
-// key value on the first row displayed. 
-BegFunc MoreRecordsBack Type(*Ind) 
-    Chain sbfCust Key(1)  
-    SetLL Cust Key(sbfCust_CMName) 
-    ReadP Cust Err(*Extended) 
-   
-    LeaveSr Value(NOT %EOF(Cust)) 
-EndFunc 
-
-// Return true if there are more records forward, given the 
-// key value on the last row displayed. 
-BegFunc MoreRecordsForward Type(*Ind) 
-    Chain sbfCust Key(sbfCust.RowCount)  
-    SetGT Cust Key(sbfCust_CMName) 
-    LeaveSr %Found(Cust) 
-EndFunc 
 
 BegSr sbfCust_Refresh
     DclSrParm CMName Type(*String) 
@@ -1023,6 +943,132 @@ BEGSR sbfCust KeyPress
     EndCs
 ENDSR
 
+// Set the first and previous page buttons' enabled status. 
+BegSr SetLeftButtonsStatus
+    DclSrParm Enabled Type(*Ind) 
+
+    // AVR Classic doesn't have an image button. This program uses the 
+    // image control to simulate image buttons. This is a little extra
+    // work because you need enabled and disabled images, but it 
+    // removes dependence on a third-party button control. See the 
+    // note at the bottom of this page to read about a way to create images
+    // for this purpose.     
+    If (Enabled)
+        LoadPicture File('left-end-arrow.jpg') target(imageFirstPage) 
+        LoadPicture File('left-arrow.jpg') target(imagePreviousPage) 
+        imageFirstPage.Enabled = *True
+        imagePreviousPage.Enabled = *True 
+    Else
+        LoadPicture File('left-end-arrow-disabled.jpg') target(imageFirstPage) 
+        LoadPicture File('left-arrow-disabled.jpg') target(imagePreviousPage) 
+        imageFirstPage.Enabled = *False
+        imagePreviousPage.Enabled = *False
+    EndIf  
+EndSr 
+
+// Set next and last page buttons' enabled status. 
+BegSr SetRightButtonsStatus
+    DclSrParm Enabled Type(*Ind) 
+    
+    If (Enabled)
+        LoadPicture File('right-end-arrow.jpg') target(imageLastPage) 
+        LoadPicture File('right-arrow.jpg') target(imageNextPage) 
+        imageLastPage.Enabled = *True
+        imageNextPage.Enabled = *True 
+    Else
+        LoadPicture File('right-end-arrow-disabled.jpg') target(imageLastPage) 
+        LoadPicture File('right-arrow-disabled.jpg') target(imageNextPage) 
+        imageLastPage.Enabled = *False
+        imageNextPage.Enabled = *False 
+    EndIf  
+EndSr 
+
+BegFunc UpdateCustomer Type(*Boolean) 
+    DclSrParm CustomerNumber Type(*Integer) Len(4) 
+
+    Chain CustUpdate Key(CustomerNumber) Err(*Extended) 
+    If %Found() 
+        Cust_CMName = sbfCust_CMName
+        Cust_CMAddr1 = sbfCust_CMAddr1
+        Update CustUpdate    
+        LeaveSr *True
+    Else 
+        Unlock CustUpdate
+        LeaveSr *False
+    EndIf
+EndFunc 
+
+BegFunc ValidateInputForCustomer Type(*Boolean)
+    DclFld Valid Type(*Boolean)
+
+    If sbfCust_CMName = *Blanks  
+        SetMessageText('Please enter a name')
+        LeaveSr *False
+    EndIf 
+
+    If sbfCust_CMAddr1 = *Blanks  
+        SetMessageText('Please enter an address')
+        LeaveSr *False
+    EndIf 
+
+    LeaveSr *True 
+EndFunc 
+
+// Every page (first, previous, next, and last) are displayed 
+// with the sbfCust_ShowNextPage routine. To page through the 
+// file backwards, this routine reads backwards through the file 
+// SUBFILE_ROWS + 1 rows. It does this to position the file 
+// pointer so that sbfCust_ShowNextPage displays the correct page.  
+BegSr ReadCustOnePageBackwards
+    DclFld BegOfFile  Type( *Boolean )
+
+    Do FromVal(1) ToVal(SUBFILE_ROWS + 1)
+        ReadP Cust BOF(BegOfFile)
+        If BegOfFile
+            SetLL Cust Key(*Start) 
+        EndIf
+    EndDo
+EndSr
+ 
+// Set subfile row color.
+BegSr SetRowColor 
+    DclSrParm CurrentRow   Type(*Integer) Len(4)
+
+    If IsEven(CurrentRow)
+        sbfCust.RecBackColor[CurrentRow] = labelEvenRowColor.BackColor
+    Else
+        sbfCust.RecBackColor[CurrentRow] = labelOddRowColor.BackColor
+    EndIf
+EndSr
+
+// Return remainder of integer division.
+BegFunc IsEven Type(*Ind) 
+    DclSrParm Value Type(*Integer) Len(4) 
+
+    DclConst EVEN_DIVISOR Value(2) 
+
+    LeaveSr Value(%REM(Value, EVEN_DIVISOR) = 0)
+EndFunc  
+
+// Return true if there are more records backward, given the 
+// key value on the first row displayed. 
+BegFunc MoreRecordsBack Type(*Ind) 
+    Chain sbfCust Key(1)  
+    SetLL Cust Key(sbfCust_CMName) 
+    ReadP Cust Err(*Extended) 
+   
+    LeaveSr Value(NOT %EOF(Cust)) 
+EndFunc 
+
+// Return true if there are more records forward, given the 
+// key value on the last row displayed. 
+BegFunc MoreRecordsForward Type(*Ind) 
+    Chain sbfCust Key(sbfCust.RowCount)  
+    SetGT Cust Key(sbfCust_CMName) 
+    LeaveSr %Found(Cust) 
+EndFunc 
+
+
 BegSr RestoreSubfileRow 
     DclSrParm Row Type(*Integer) Len(4) 
 
@@ -1059,10 +1105,6 @@ BegFunc CompareNameToSubfileRowName Type(*Boolean)
     Chain sbfCust Key(RRN) 
     LeaveSr Value(sbfCust_CMname = CMName)
 EndFunc 
-
-BEGSR sbfCust DoubleClick
-    AttemptFullCustomerUpdate()
-EndSr 
 
 BegSr AttemptFullCustomerUpdate
     DclFld CMName Type(*Char) Len(40) 
