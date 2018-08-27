@@ -3,15 +3,27 @@ DCLPROGRAM // Startup
 INITPROP NAME(_Version) TYPE(*INTEGER4) VALUE(131173)
 INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('Startup')
 INITPROP NAME(CreationID) TYPE(*BASICSTRING) VALUE('{551515D2-7112-48DB-B5D5-EAB89737C3FE}')
-INITPROP NAME(ModifiedID) TYPE(*BASICSTRING) VALUE('{81791420-34B6-4686-B23F-20234D043EE7}')
+INITPROP NAME(ModifiedID) TYPE(*BASICSTRING) VALUE('{B60533B2-9E35-4030-B9AD-D3CB52A2F20C}')
 END
+// Global application declarations. Anything declared here 
+// is available to all forms (VRFs) and programs (VRPs).
+
+// Global program constants. 
 DclConst RECORD_UPDATED Value('1') 
 DclConst RECORD_NOT_UPDATED Value('0')
 DclConst LIST_ITEM_NOT_FOUND Value(-1) 
 
+// Declare a global instance of the ASNA String control. 
 DclFld as Type(MISCCTLSLib.String)
+
+// Declare an instance of the ASNA Collection class. This 
+// lets you build dynamically-sized collections.
 DclFld StatesList Type(AVRCTLSLib.Collection)
 
+// Call GetStateList program to populate the StatesList collection. 
+// The StatesList collection persists a list of states and state 
+// abbreviations for the life of this app.
 Call Pgm('GetStateList') 
 
+// Show formMain to start this app. 
 Show formMain

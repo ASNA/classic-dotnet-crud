@@ -3,7 +3,7 @@ DCLPROGRAM // GetStateList
 INITPROP NAME(_Version) TYPE(*INTEGER4) VALUE(131173)
 INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('GetStateList')
 INITPROP NAME(CreationID) TYPE(*BASICSTRING) VALUE('{E61344D6-CF37-4624-AC2B-B0CB6492DD32}')
-INITPROP NAME(ModifiedID) TYPE(*BASICSTRING) VALUE('{6ACE179E-631E-440C-A3D9-75D80D9084B1}')
+INITPROP NAME(ModifiedID) TYPE(*BASICSTRING) VALUE('{12CC297E-0340-44F5-B4FC-E248130BD4F3}')
 END
 DclDiskFile  Name(States) +
              Type(*Input) +
@@ -13,22 +13,42 @@ DclDiskFile  Name(States) +
              FileDesc('Examples/States') +
              DBDesc('*PUBLIC/DG Net Local')
 
+// Program entry point.
 DclPList *Entry
 
 LoadStatesList()
+
+// This program needs to be called only once when this application
+// starts. Turning on LR removes it from memory. If a VRP is called 
+// many times, perhaps from many places, in your application, then do 
+// do not set on LR. 
+// 
+// For programmers not familar with RPG on the IBM i, LR ("Last Record") is 
+// a one of RPG's many indicators. LR is a special-case indicator that, 
+// as explained above, controls the lifetime of a program.
+*INLR = *ON 
+
 Return 
 
-BegSr LoadStatesList
-    DclFld x Type(*String) 
-    DclFld i Type(*Integer) Len(4) 
 
+// Load the StatesList collection with state names and abbreviations from 
+// the Examples/States file.
+BegSr LoadStatesList
+
+    // A prime-the-pump read over the States file. 
     SetLL States Key(*Start) 
+
     Read States Err(*Extended) 
+
     DoWhile NOT %EOF()
-        i = i + 1
+        // The first argument provides the collection entry's value 
+        // and the second argument is the key value. For example, 
+        // If the value is `Alabama` and the key is `AL`, the state 
+        // name could be fetched from the collection like this: 
+        //   `StateName = StatesList['AL']`    
         StatesList.Add(States_State, States_Abbrev) 
+
         Read States Err(*Extended) 
     EndDo 
 EndSr 
-
 

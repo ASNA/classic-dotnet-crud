@@ -20,7 +20,7 @@ INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
 ENDPROP
 INITPROP NAME(StartUpPosition) TYPE(*INTEGER2) VALUE(1)
 INITPROP NAME(CreationID) TYPE(*BASICSTRING) VALUE('{BE755B52-EDC3-4801-AA40-8FE751378CD2}')
-INITPROP NAME(ModifiedID) TYPE(*BASICSTRING) VALUE('{4FAA10AE-D702-4540-8F6C-AC2A8ED57EB0}')
+INITPROP NAME(ModifiedID) TYPE(*BASICSTRING) VALUE('{85971D8B-38AD-4F06-8B26-AAD2DB78B8A9}')
 DCLMENU PARENT(formMain) // mnuForm1
 INITPROP NAME(_Version) TYPE(*INTEGER4) VALUE(131176)
 INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('mnuForm1')
@@ -55,12 +55,12 @@ ENDPROP
 INITPROP NAME(RowHeight) TYPE(*INTEGER4) VALUE(400)
 INITPROP NAME(ButtonHeight) TYPE(*INTEGER4) VALUE(380)
 INITPROP NAME(ButtonWidth) TYPE(*INTEGER4) VALUE(300)
-INITPROP NAME(RowButtons) TYPE(*BOOLEAN) VALUE(255)
+INITPROP NAME(RowButtons) TYPE(*BOOLEAN) VALUE(-1)
 INITPROP NAME(HScroll) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(VScroll) TYPE(*BOOLEAN) VALUE(0)
-INITPROP NAME(NoHideSel) TYPE(*BOOLEAN) VALUE(255)
-INITPROP NAME(NoLines) TYPE(*BOOLEAN) VALUE(255)
-INITPROP NAME(SingleSelect) TYPE(*BOOLEAN) VALUE(255)
+INITPROP NAME(NoHideSel) TYPE(*BOOLEAN) VALUE(-1)
+INITPROP NAME(NoLines) TYPE(*BOOLEAN) VALUE(-1)
+INITPROP NAME(SingleSelect) TYPE(*BOOLEAN) VALUE(-1)
 INITPROP NAME(RRNFldName) TYPE(*BASICSTRING) VALUE('sbfCust_RRN')
 DCLPROP NAME(Fields) TYPE(*BLOBPROPSET) CLSID('{C263D36E-452D-4934-8E90-141DD8DECC1D}')
 INITPROP NAME(Name0) TYPE(*BASICSTRING) VALUE('sbfCust_CMCustno')
@@ -269,7 +269,7 @@ INITPROP NAME(Underline) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Italic) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
 ENDPROP
-INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(255)
+INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(-1)
 INITPROP NAME(UseMnemonic) TYPE(*BOOLEAN) VALUE(0)
 DCLCTL CLSID('{9A541647-88B8-11CF-A6E2-00801E0111FB}') PARENT(Frame2) // labelAddress
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
@@ -298,7 +298,7 @@ INITPROP NAME(Underline) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Italic) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
 ENDPROP
-INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(255)
+INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(-1)
 DCLCTL CLSID('{9A541647-88B8-11CF-A6E2-00801E0111FB}') PARENT(Frame2) // labelCSZ
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
 INITPROP NAME(_PersistType) TYPE(*INTEGER2) VALUE(3)
@@ -326,7 +326,7 @@ INITPROP NAME(Underline) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Italic) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
 ENDPROP
-INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(255)
+INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(-1)
 DCLCTL CLSID('{9A54164F-88B8-11CF-A6E2-00801E0111FB}') PARENT(formMain) // Frame1
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
 INITPROP NAME(_PersistType) TYPE(*INTEGER2) VALUE(3)
@@ -534,7 +534,7 @@ INITPROP NAME(Underline) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Italic) TYPE(*BOOLEAN) VALUE(0)
 INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
 ENDPROP
-INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(255)
+INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(-1)
 DCLCTL CLSID('{8DC04C91-E0F4-11CF-9EDA-00A024D72D2B}') PARENT(formMain) // timerMessage
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
 INITPROP NAME(_PersistType) TYPE(*INTEGER2) VALUE(3)
@@ -568,6 +568,10 @@ END
 // populating and navigating the subfile. 
 // ---
 
+
+// Files opened for update aren't blocked like input files are. Therefore it's best
+// to use input files (which are blocked by default with AVR) for populating lists
+// (such as subfiles and comboboxes). 
 DclDiskFile  Name(Cust) +
              Type(*INPUT) +
              Org(*INDEXED) +
@@ -578,6 +582,8 @@ DclDiskFile  Name(Cust) +
              FileDesc('Examples/CMastNewL2') +
              DBDesc('*PUBLIC/DG NET Local') 
 
+// This file is opened for update. When reads are made against this file that don't 
+// perform an immediate update the `Unlock` opcode is used to unlock the record.  
 DclDiskFile  Name(CustUpdate) +
              Type(*Update) +
              Org(*INDEXED) +
@@ -603,12 +609,17 @@ DclDiskFile  Name(CustUpdate) +
 // in the subfile.  
 DclConst SUBFILE_ROWS Value(12)
 DclConst TOP_ROW Value(0) 
- 
+
+// Labels on forms that have empty captions are very hard to work with
+// at designtime. I add bracketed captions to these labels so that they 
+// are easy to work with at runtime (for example, `[Name]`). When the 
+// program starts these labels are cleared. 
 labelName.Caption = ''
 labelAddress.Caption = ''
 labelCSZ.Caption = ''
 labelMessage.Caption = ''
 
+// Show first page of the subfile.
 sbfCust_ShowFirstPage()
  
 // End of mainline.
