@@ -1,0 +1,36 @@
+  648,1:   imagefirstpage click
+  653,1:   imagenextpage click
+  660,1:   imagepreviouspage click   
+  665,1:   imagelastpage click
+  670,1:   imagerefresh click
+  675,1:   imagerefresh mousedown
+  685,1:   imagerefresh mouseup
+  695,1:   textboxpositionto keypress
+  712,1:   sbfcust recswitch
+  734,1:   sbfcust selchanging
+  782,1:   sbfcust doubleclick
+  788,1:   sbfcust_initialize
+  795,1:   sbfcust_showfirstpage
+  802,1:   sbfcust_shownextpage
+  833,1:   sbfcust_showpreviouspage
+  848,1:   sbfcust_showlastpage 
+  858,1:   sbfcust_assignfields
+  871,1:   sbfcust_gotorow
+  889,1:   sbfcust_positionto type(*ind) 
+  909,1:   sbfcust_setfields
+  915,1:   sbfcust_setinfodisplay    
+  924,1:   sbfcust_refresh
+  943,1:   sbfcust keypress
+  969,1:   setleftbuttonsstatus
+  992,1:   setrightbuttonsstatus
+  1008,1:   updatecustomer type(*boolean) 
+  1023,1:   validateinputforcustomer type(*boolean)
+  1044,1:   readcustonepagebackwards
+  1056,1:   setrowcolor 
+  1067,1:   iseven type(*ind) 
+  1077,1:   morerecordsback type(*ind) 
+  1087,1:   morerecordsforward type(*ind) 
+  1101,1:   setmessagetext
+  1108,1:   timermessage timer
+  1113,1:   comparenametosubfilerowname type(*boolean) 
+  1122,1:   attemptfullcustomerupdate

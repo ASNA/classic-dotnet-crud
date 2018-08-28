@@ -1,0 +1,569 @@
+// [Return to repo](https://github.com/ASNA/classic-dotnet-navgrid)
+// ### AVR Classic program to demonstrate a simple subfile for customer selection.
+//
+// #### [Show controls list and their properties.](formMain.vrf.controls.html)
+// [See file schema here.](http://1clickurls.com/yT1m-Mq)
+//
+// ![](screen-shot-01.png?4)
+// 
+// This program shows a simple page-at-a-time subfile that would be used 
+// for navigation through a file. Once a row is located, the user would initiate 
+// an action. That action isn't shown in the is example; this example focuses on 
+// populating and navigating the subfile. 
+// 90, 88 89
+// 195, 195, 195
+
+// ---
+
+
+// Files opened for update aren't blocked like input files are. Therefore it's best
+// to use input files (which are blocked by default with AVR) for populating lists
+// (such as subfiles and comboboxes). 
+DclDiskFile  Name(Cust) +
+             Type(*INPUT) +
+             Org(*INDEXED) +
+             Prefix(Cust_) +
+             NetBlockFactor(*Calc) +
+             ImpOpen(*Yes) +
+             AddRec(*No) +
+             FileDesc('Examples/CMastNewL2') +
+             DBDesc('*PUBLIC/DG NET Local') 
+
+// This file is opened for update. When reads are made against this file that don't 
+// perform an immediate update the `Unlock` opcode is used to unlock the record.  
+DclDiskFile  Name(CustUpdate) +
+             Type(*Update) +
+             Org(*INDEXED) +
+             Prefix(Cust_) +
+             ImpOpen(*Yes) +
+             RnmFmt(CUSTU) + 
+             FileDesc('Examples/CMastNewL1') +
+             DBDesc('*PUBLIC/DG Net Local')
+
+//- These data structures aren't used in this program, but provide a 
+//- potential discussion point.  
+//- DclDS CustDS  ExtDesc(*Yes) +
+//-               FileDesc('Examples/CMastNewL2') +
+//-               DBDesc('*PUBLIC/DG NET Local') +
+//-               Prefix(Cust_)
+ 
+//- DclDS sbfCustDS  ExtDesc(*Yes) +
+//-                  FileDesc('Examples/CMastNewL2') +
+//-                  DBDesc('*PUBLIC/DG NET Local') +
+//-                 Prefix(SbfCust_)
+
+// This value controls how many rows are presented
+// in the subfile.  
+DclConst SUBFILE_ROWS Value(12)
+DclConst TOP_ROW Value(0) 
+
+// Labels on forms that have empty captions are very hard to work with
+// at designtime. I add bracketed captions to these labels so that they 
+// are easy to work with at runtime (for example, `[Name]`). When the 
+// program starts these labels are cleared. 
+labelName.Caption = ''
+labelAddress.Caption = ''
+labelCSZ.Caption = ''
+labelMessage.Caption = ''
+
+// Show first page of the subfile.
+sbfCust_ShowFirstPage()
+ 
+// End of mainline.
+
+// First page requested.
+BEGSR imageFirstPage Click
+    sbfCust_ShowFirstPage() 
+ENDSR
+
+// Next page requested.
+BEGSR imageNextPage Click
+    Chain sbfCust Key(sbfCust.RowCount)
+    SetGT Cust Key(sbfCust_CMName) 
+    sbfCust_ShowNextPage()
+ENDSR
+
+// Previous page requested. 
+BEGSR imagePreviousPage Click   
+    sbfCust_ShowPreviousPage()
+ENDSR
+
+// Last page requested. 
+BEGSR imageLastPage Click
+    sbfCust_ShowLastPage()  
+ENDSR
+
+// Refresh subfile from top row. 
+BEGSR imageRefresh Click
+    sbfCust_Refresh(TOP_ROW) 
+ENDSR
+
+// Toggle refresh image to show mouse down.
+BEGSR imageRefresh MouseDown
+    DclSrParm Button TYPE(*INTEGER) LEN(2) 
+    DclSrParm Shift TYPE(*INTEGER) LEN(2) 
+    DclSrParm X TYPE(*INTEGER) LEN(4) 
+    DclSrParm Y TYPE(*INTEGER) LEN(4) 
+
+    LoadPicture File('refresh-disabled.jpg') target(imageRefresh) 
+ENDSR
+
+// Toggle refresh image to show mouse up.
+BEGSR imageRefresh MouseUp
+    DclSrParm Button TYPE(*INTEGER) LEN(2) 
+    DclSrParm Shift TYPE(*INTEGER) LEN(2) 
+    DclSrParm X TYPE(*INTEGER) LEN(4) 
+    DclSrParm Y TYPE(*INTEGER) LEN(4) 
+
+    LoadPicture File('refresh.jpg') target(imageRefresh) 
+ENDSR
+
+// Watch for ENTER key in the textboxPositionTo textbox. 
+BegSr textboxPositionTo KeyPress
+    DclSrParm KeyAscii TYPE(*INTEGER) LEN(2) BY(*REFERENCE)
+ 
+    DclConst ENTER_KEY Value( 13)
+    DclConst EAT_KEY   Value(  0)
+
+    // Watch for an Enter keypress when ioPosition has 
+    // focus. End the keypress event handler by setting 
+    // KeyAscii to EAT_KEY (0) and then position the subfile.  
+    If (KeyAscii = ENTER_KEY)
+        KeyAscii = EAT_KEY
+        sbfCust_PositionTo(textboxPositionTo.Value)
+        textboxPositionTo.Value = *Blanks
+    EndIf
+EndSr
+
+// The current row changed in the subfile. 
+BegSr sbfCust RecSwitch
+    DclSrParm FromRec  Type(*INTEGER) LEN(4)
+ 
+    // Read subfile record on every subfile record switch to have
+    // that subfile row's fields available.  The AVR Classic subfile reports 
+    // zero-based row and column values, and the subfile RRN is one based. 
+    // When chaining to the subfile with the subfile Row property, be sure to add 
+    // one to it to 'translate' it to the corresponding RRN.
+    Chain sbfCust Key(sbfCust.Row + 1) NotFnd(*In50)
+ 
+    // Populate customer info panel with fields from the 
+    // just-read subfile row. 
+    sbfCust_SetInfoDisplay()
+EndSr
+ 
+// This subfile event handler fires as the subfile row is changing.
+// The subfile heading is a considered a row, just like the data rows. 
+// The subfile heading row's ordinal position is -1 and the first data row 
+// is zero. If the user moves the current row the entire subfile is 
+// selected and that is very jarring to the user. This code looks to see 
+// if the user attempted to move into the header and moves the row 
+// selected back to the twop row (the zeroth row).
+BegSr sbfCust SelChanging
+    // Inhibit user moving to heading row of subfile.
+    DclConst  HEADING_ROW   Value(-1)
+
+    // Uncomment this LeaveSr and user move the row to the top of the 
+    // subfile with the `up` arrow key to see the default behavior arrow
+    // key behavior.  
+    If (sbfCust.Row = HEADING_ROW)
+        sbfCust_GoToRow(TOP_ROW)
+    EndIf
+
+    If sbfCust.SelStartRow < 0 
+        sbfCust.SetFocus()
+        LeaveSr
+    EndIf     
+
+    // The SelChanging event fires when the user moves the subfile to another 
+    // row. The subfile.Row property reports the zero-based row the user is 
+    // moving to (the target row), and the subfile.SelStartRow property reports
+    // the zero-based row the user is moving from (the source row).
+
+    // If the source row was changed attempt record edit. 
+    If sbfCust.RecChanged[sbfCust.SelStartRow]
+        // Read the changed row.
+        Chain sbfCust Key(sbfCust.SelStartRow + 1)
+
+        // Check for errors here. 
+        If ValidateInputForCustomer()
+            // Attempt file update.
+            UpdateCustomer(sbfCust_CMCustNo)
+            // Show message.
+            SetMessageText('Customer changed: ' + %CHAR(%EDITC(sbfCust_CMCustNo, '1')))
+            // Set row RecChanged status to false.
+            sbfCust.RecChanged[sbfCust.SelStartRow] = *False
+            // Position to the customer name.
+            sbfCust_PositionTo(sbfCust_CMName)
+        Else
+            // If there was a validation error, move back to the 
+            // source row.
+            sbfCust.Row = sbfCust.SelStartRow  
+            sbfCust.Col = sbfCust.SelStartCol
+        EndIf 
+    ENdIf 
+    // Give the subfile focus.
+    sbfCust.SetFocus()
+EndSr
+
+// Double-click on a subfile row to select it for update.     
+BEGSR sbfCust DoubleClick
+    AttemptFullCustomerUpdate()
+EndSr 
+
+// Clear the subfile and set its RRN to zero--making it ready for a 
+// a new page. 
+BegSr sbfCust_Initialize
+    // Initialize and clear subfile.
+    sbfCust_RRN = 0
+    sbfCust.ClearObj()
+EndSr
+
+// Show first page of subfile.
+BegSr sbfCust_ShowFirstPage
+    // Position file at top of file.
+    SetLL Cust Key(*Start) 
+    sbfCust_ShowNextPage()
+EndSr
+
+// Show next page of subfile. 
+BegSr sbfCust_ShowNextPage
+    // Fill sbfCust with next group of rows from Cust's current 
+    // file pointer position.
+
+    sbfCust_Initialize()
+
+    Do FromVal(1) ToVal(SUBFILE_ROWS)
+        Read Cust
+        If (%EOF(Cust))
+            Leave
+        EndIf
+        sbfCust_AssignFields()
+        // Write the subfile row.
+        Write sbfCust
+
+        SetRowColor(sbfCust_RRN - 1)
+    EndDo
+
+    // Set the enabled/disabled status of the 
+    // image buttons. 
+    SetLeftButtonsStatus(MoreRecordsBack())
+    SetRightButtonsStatus(MoreRecordsForward())
+    // Explicitly set the subfile to top row (which
+    // implicitly refreshes the customer info
+    // at the top of the form.)
+    sbfCust_GoToRow(TOP_ROW)    
+    // Give focus to the subfile so its speed keys are in effect.
+    sbfCust.SetFocus()
+EndSr
+
+// Show previous page of subfile.
+BegSr sbfCust_ShowPreviousPage
+    // Read the first row of the subfile to make that row's fields available.
+    Chain sbfCust Key(1)  
+    // Position the file at the record in the first row.
+    SetLL Cust Key(sbfCust_CMName) Err(*Extended) 
+    // Read backwards from there. 
+    ReadCustOnePageBackwards()
+
+   
+    // Having read backwards a number of rows and then 
+    // show the page. 
+    sbfCust_ShowNextPage()
+EndSr
+
+// Show last page of subfile.
+BegSr sbfCust_ShowLastPage 
+    // Position file pointer at end of file.
+    SetGT Cust Key(*HiVal)     
+    // Read backwards from there. 
+    ReadCustOnePageBackwards()
+    // Having read backwards a number of rows and then 
+    // show the page. 
+    sbfCust_ShowNextPage()
+EndSr 
+
+BegSr sbfCust_AssignFields
+    // Assign fields from the Cust file to the 
+    // subfile. 
+    sbfCust_RRN = sbfCust.RowCount + 1
+    sbfCust_CMCustNo = Cust_CMCustNo 
+    sbfCust_CMName = Cust_CMName
+    sbfCust_CMAddr1 = Cust_CMAddr1
+    sbfCust_CMCity = Cust_CMCity
+    sbfCust_CMState = Cust_CMState
+    sbfCust_CMPostCode = Cust_CMPostCode
+EndSr
+
+// Position populated subfile at top row (the zeroth row). 
+BegSr sbfCust_GoToRow
+    DclSrParm TargetRow Type(*Integer) Len(4) 
+
+    DclConst LEFT_MOST_COLUMN Value(0)
+    // The Select method selects the given row of the subfile. 
+    // If there are no rows in the subfile, the Select method
+    // fails. Wrapping it an Eval statement and using 
+    // Err(*Extended) 'eats' the error letting Select method 
+    // fail silently. 
+    // You need to provide a zero-based row and column to the 
+    // Select method. Zero is the top row and zero is the left-most 
+    // column. Constants are used to avoid using "magic numbers" 
+    // that be confusing later. 
+
+    Eval F2(sbfCust.Select(TargetRow, LEFT_MOST_COLUMN)) Err(*Extended)
+EndSr
+ 
+// Position subfile at a new location. 
+BegFunc sbfCust_PositionTo Type(*Ind) 
+    DclSrParm PositionToName Type(*String)
+//    DclFld SaveName Type(*String) 
+    
+    // Is position-to value key in the file
+    SetLL Cust Key(PositionToName)
+    If (%FOUND(Cust))
+        // If so, show the next page from there.
+        sbfCust_ShowNextPage()        
+        LeaveSr *True 
+    Else
+        // Otherwise, reselect the subfile's top row and 
+        // display a message. 
+        sbfCust_GoToRow(TOP_ROW)        
+        MsgBox Title('Search results') Msg('No records found')
+        textboxPositionTo.SetFocus()
+        LeaveSr *False 
+    EndIf
+EndFunc 
+
+BegSr sbfCust_SetFields
+    // Move fields from disk file to subfile.
+EndSr
+ 
+// Assign field values for customer info panel 
+// above the subfile. 
+BegSr sbfCust_SetInfoDisplay    
+    labelName.Caption      = sbfCust_CMName
+    labelAddress.Caption   = sbfCust_CMAddr1
+    labelCSZ.Caption       = %TRIM(sbfCust_CMCity) + ', ' ++
+                             sbfCust_CMState + '  ' ++
+                             sbfCust_CMPostCode
+EndSr
+
+// Refresh the subfile from a given name.
+BegSr sbfCust_Refresh
+    DclSrParm CMName Type(*String) 
+
+    DclFld SaveRow Type(*Integer) Len(4)
+
+    SaveRow = sbfCust.Row 
+
+    If CMName = *Blanks   
+        Chain sbfCust Key(1) 
+        SetLL Cust Key(sbfCust_CMName)         
+    Else 
+        SetLL Cust Key(CMName)             
+    EndIf         
+    sbfCust_ShowNextPage()
+    sbfCust_GoToRow(SaveRow)
+EndSr 
+
+// Poll for 'f', 'p', 'n', and 'l' keypresses to behave as accelerator keys 
+// for the corresponding subfile page actions. 
+BEGSR sbfCust KeyPress
+    DclSrParm KeyAscii TYPE(*INTEGER) LEN(2) BY(*REFERENCE)
+
+    DclConst ESCAPE_KEY Value(27)   
+    DclConst LOWER_F_KEY Value(102)
+    DclConst LOWER_N_KEY Value(110)
+    DclConst LOWER_P_KEY Value(112)
+    DclConst LOWER_L_KEY Value(108)
+
+    // The escape key cancels an inline row edit.
+    If KeyAscii = ESCAPE_KEY         
+        sbfCust_Refresh(*BLANKS) 
+    EndIf 
+
+    If sbfCust.Browse = *False 
+        LeaveSr
+    EndIf 
+
+    Case Cond(KeyAscii = LOWER_F_KEY) Sr(sbfCust_ShowFirstPage) 
+    Case Cond(KeyAscii = LOWER_P_KEY) Sr(sbfCust_ShowPreviousPage) 
+    Case Cond(KeyAscii = LOWER_N_KEY) Sr(sbfCust_ShowNextPage) 
+    Case Cond(KeyAscii = LOWER_L_KEY) Sr(sbfCust_ShowLastPage) 
+    EndCs
+ENDSR
+
+// Set the first and previous page buttons' enabled status. 
+BegSr SetLeftButtonsStatus
+    DclSrParm Enabled Type(*Ind) 
+
+    // AVR Classic doesn't have an image button. This program uses the 
+    // image control to simulate image buttons. This is a little extra
+    // work because you need enabled and disabled images, but it 
+    // removes dependence on a third-party button control. See the 
+    // note at the bottom of this page to read about a way to create images
+    // for this purpose.     
+    If (Enabled)
+        LoadPicture File('left-end-arrow.jpg') target(imageFirstPage) 
+        LoadPicture File('left-arrow.jpg') target(imagePreviousPage) 
+        imageFirstPage.Enabled = *True
+        imagePreviousPage.Enabled = *True 
+    Else
+        LoadPicture File('left-end-arrow-disabled.jpg') target(imageFirstPage) 
+        LoadPicture File('left-arrow-disabled.jpg') target(imagePreviousPage) 
+        imageFirstPage.Enabled = *False
+        imagePreviousPage.Enabled = *False
+    EndIf  
+EndSr 
+
+// Set next and last page buttons' enabled status. 
+BegSr SetRightButtonsStatus
+    DclSrParm Enabled Type(*Ind) 
+    
+    If (Enabled)
+        LoadPicture File('right-end-arrow.jpg') target(imageLastPage) 
+        LoadPicture File('right-arrow.jpg') target(imageNextPage) 
+        imageLastPage.Enabled = *True
+        imageNextPage.Enabled = *True 
+    Else
+        LoadPicture File('right-end-arrow-disabled.jpg') target(imageLastPage) 
+        LoadPicture File('right-arrow-disabled.jpg') target(imageNextPage) 
+        imageLastPage.Enabled = *False
+        imageNextPage.Enabled = *False 
+    EndIf  
+EndSr 
+
+BegFunc UpdateCustomer Type(*Boolean) 
+    DclSrParm CustomerNumber Type(*Integer) Len(4) 
+
+    Chain CustUpdate Key(CustomerNumber) Err(*Extended) 
+    If %Found() 
+        Cust_CMName = sbfCust_CMName
+        Cust_CMAddr1 = sbfCust_CMAddr1
+        Update CustUpdate    
+        LeaveSr *True
+    Else 
+        Unlock CustUpdate
+        LeaveSr *False
+    EndIf
+EndFunc 
+
+BegFunc ValidateInputForCustomer Type(*Boolean)
+    DclFld Valid Type(*Boolean)
+
+    If sbfCust_CMName = *Blanks  
+        SetMessageText('Please enter a name')
+        LeaveSr *False
+    EndIf 
+
+    If sbfCust_CMAddr1 = *Blanks  
+        SetMessageText('Please enter an address')
+        LeaveSr *False
+    EndIf 
+
+    LeaveSr *True 
+EndFunc 
+
+// Every page (first, previous, next, and last) are displayed 
+// with the sbfCust_ShowNextPage routine. To page through the 
+// file backwards, this routine reads backwards through the file 
+// SUBFILE_ROWS + 1 rows. It does this to position the file 
+// pointer so that sbfCust_ShowNextPage displays the correct page.  
+BegSr ReadCustOnePageBackwards
+    DclFld BegOfFile  Type( *Boolean )
+
+    Do FromVal(1) ToVal(SUBFILE_ROWS + 1)
+        ReadP Cust BOF(BegOfFile)
+        If BegOfFile
+            SetLL Cust Key(*Start) 
+        EndIf
+    EndDo
+EndSr
+ 
+// Set subfile row color.
+BegSr SetRowColor 
+    DclSrParm CurrentRow   Type(*Integer) Len(4)
+
+    If IsEven(CurrentRow)
+        sbfCust.RecBackColor[CurrentRow] = labelEvenRowColor.BackColor
+    Else
+        sbfCust.RecBackColor[CurrentRow] = labelOddRowColor.BackColor
+    EndIf
+EndSr
+
+// Return remainder of integer division.
+BegFunc IsEven Type(*Ind) 
+    DclSrParm Value Type(*Integer) Len(4) 
+
+    DclConst EVEN_DIVISOR Value(2) 
+
+    LeaveSr Value(%REM(Value, EVEN_DIVISOR) = 0)
+EndFunc  
+
+// Return true if there are more records backward, given the 
+// key value on the first row displayed. 
+BegFunc MoreRecordsBack Type(*Ind) 
+    Chain sbfCust Key(1)  
+    SetLL Cust Key(sbfCust_CMName) 
+    ReadP Cust Err(*Extended) 
+   
+    LeaveSr Value(NOT %EOF(Cust)) 
+EndFunc 
+
+// Return true if there are more records forward, given the 
+// key value on the last row displayed. 
+BegFunc MoreRecordsForward Type(*Ind) 
+    Chain sbfCust Key(sbfCust.RowCount)  
+    SetGT Cust Key(sbfCust_CMName) 
+    LeaveSr %Found(Cust) 
+EndFunc 
+
+// ### Creating images for AVR class'c image control. 
+// The [FontAwesome](https://fontawesome.com/icons) site provides free SVG 
+// images for Web development. SVG images aren't much help to AVR Classic, 
+// but the [fa2png](http://fa2png.io/) site freely translates a FontAwesome
+// SVG to a PNG. Create a 32px PNG with the fa2png site, then use MS Paint 
+// to save that PNG as a JPG. (AVR Classic's Image control doesn't work with 
+// PNG files. 
+
+BegSr SetMessageText
+    DclSrParm Text Type(*String) 
+
+    labelMessage.Caption = Text 
+    timerMessage.Enabled = *True 
+EndSr
+
+BEGSR timerMessage Timer
+    labelMessage.Caption = ''
+    timerMessage.Enabled = *False  
+ENDSR
+
+BegFunc CompareNameToSubfileRowName Type(*Boolean) 
+    DclSrParm RRN Type(*Integer) Len(4) 
+    DclSrParm CMName Type(*String) 
+
+    Chain sbfCust Key(RRN) 
+    LeaveSr Value(sbfCust_CMname = CMName)
+EndFunc 
+
+// Call form to update customer. 
+BegSr AttemptFullCustomerUpdate
+    DclFld CMName Type(*Char) Len(40) 
+    DclFld Updated Type(*Char) Len(1) 
+    DclFld CurrentRow Type(*Integer) Len(4) 
+
+    CurrentRow = sbfCust.Row 
+
+    Call pgm('formCustCRUD') 
+        DclParm sbfCust_CMCustNo 
+        DclParm CMName
+        DclParm Updated
+
+    If Updated = RECORD_UPDATED 
+        If CompareNameToSubfileRowName(CurrentRow + 1, CMName)
+            sbfCust_Refresh(*Blanks) 
+            sbfCust_GoToRow(CurrentRow)    
+        Else 
+            sbfCust_Refresh(CMName)   
+        EndIf 
+    EndIf
+ENDSR
