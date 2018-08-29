@@ -20,7 +20,7 @@ INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
 ENDPROP
 INITPROP NAME(StartUpPosition) TYPE(*INTEGER2) VALUE(1)
 INITPROP NAME(CreationID) TYPE(*BASICSTRING) VALUE('{BE755B52-EDC3-4801-AA40-8FE751378CD2}')
-INITPROP NAME(ModifiedID) TYPE(*BASICSTRING) VALUE('{487AFED7-54C3-492E-A085-515813A35BB7}')
+INITPROP NAME(ModifiedID) TYPE(*BASICSTRING) VALUE('{AC932AE1-5F0A-440E-8093-FD3BB3175F6D}')
 DCLMENU PARENT(formMain) // mnuForm1
 INITPROP NAME(_Version) TYPE(*INTEGER4) VALUE(131176)
 INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('mnuForm1')
@@ -623,15 +623,14 @@ sbfCust_ShowFirstPage()
 // End of mainline.
 
 // ---
+
 // Naming conventions:
 //
-// * _sbfCust.<method name>:_ Methods provided intrinsically by the subfile.
+// * _sbfCust.[method name]:_ Methods provided intrinsically by the subfile.
+// * _sbfCust.[property name]:_ Properties provided intrinsically by the subfile.
+// * _sbfCust_[method name]:_ Methods that manipulate the subfile provided in this program.
+// * _sbfCust_[field name]:_ Fields that describe or control the subfile provided in this program.
 
-// * _sbfCust.<property name>:_ Properties provided intrinsically by the subfile.
-
-// * _sbfCust_<method name>:_ Methods that manipulate the subfile provided in this program.
-
-// * _sbfCust_<field name>:_ Fields that describe or control the subfile provided in this program.
 // ---
 
 // First page requested.
