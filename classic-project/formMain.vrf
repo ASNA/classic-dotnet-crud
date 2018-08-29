@@ -20,7 +20,7 @@ INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
 ENDPROP
 INITPROP NAME(StartUpPosition) TYPE(*INTEGER2) VALUE(1)
 INITPROP NAME(CreationID) TYPE(*BASICSTRING) VALUE('{BE755B52-EDC3-4801-AA40-8FE751378CD2}')
-INITPROP NAME(ModifiedID) TYPE(*BASICSTRING) VALUE('{6ACDA94C-E8DB-42FF-8EB6-9748E0CF6130}')
+INITPROP NAME(ModifiedID) TYPE(*BASICSTRING) VALUE('{5E548428-9D92-477F-A030-34AECA945565}')
 DCLMENU PARENT(formMain) // mnuForm1
 INITPROP NAME(_Version) TYPE(*INTEGER4) VALUE(131176)
 INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('mnuForm1')
@@ -635,6 +635,8 @@ DclConst SUBFILE_ROWS Value(12)
 // This constant idenfies the (zero-based) first row in the subfile.  
 DclConst TOP_ROW Value(0) 
 
+DclConst REFRESH_FROM_FIRST_ROW Value("")
+
 // Labels on forms that have empty captions are very hard to work with
 // at designtime. I add bracketed captions to these labels so that they 
 // are easy to work with at runtime (for example, `[Name]`). When the 
@@ -748,7 +750,7 @@ BegSr sbfCust RecSwitch
     // subfile RRN is one based. 
     // When chaining to the subfile with the subfile Row property, be sure to add 
     // one to it to 'translate' it to the corresponding one-based RRN.
-    Chain sbfCust Key(sbfCust.Rodw + 1) NotFnd(*In50)
+    Chain sbfCust Key(sbfCust.Row + 1) NotFnd(*In50)
  
     // Populate customer info panel with fields from the 
     // just-read subfile row. 
@@ -981,7 +983,7 @@ BegSr sbfCust_Refresh
 
     // If the name passed is blanks, then refresh from 
     // the subfile's first record.
-    If CMName = *Blanks   
+    If CMName = REFRESH_FROM_FIRST_ROW
         Chain sbfCust Key(1) 
         SetLL Cust Key(sbfCust_CMName)         
     Else 
@@ -1007,7 +1009,7 @@ BEGSR sbfCust KeyPress
 
     // The escape key cancels an inline row edit.
     If KeyAscii = ESCAPE_KEY         
-        sbfCust_Refresh(*BLANKS) 
+        sbfCust_Refresh(REFRESH_FROM_FIRST_ROW) 
     EndIf 
 
     // The subfile's Browse property controls where the subfile 
@@ -1161,14 +1163,8 @@ BegFunc MoreRecordsForward Type(*Ind)
     LeaveSr %Found(Cust) 
 EndFunc 
 
-// ### Creating images for AVR class'c image control. 
-// The [FontAwesome](https://fontawesome.com/icons) site provides free SVG 
-// images for Web development. SVG images aren't much help to AVR Classic, 
-// but the [fa2png](http://fa2png.io/) site freely translates a FontAwesome
-// SVG to a PNG. Create a 32px PNG with the fa2png site, then use MS Paint 
-// to save that PNG as a JPG. (AVR Classic's Image control doesn't work with 
-// PNG files. 
-
+// Set the labelMessage control's `Caption` property and enable 
+// the timerMessage timer control. When it expires the message is cleared. 
 BegSr SetMessageText
     DclSrParm Text Type(*String) 
 
@@ -1176,16 +1172,21 @@ BegSr SetMessageText
     timerMessage.Enabled = *True 
 EndSr
 
+// This event handler fires when the timerMessage control's interval (its 
+// elaspsed time in milliseconds). This clears the labelMessage control's caption.
 BEGSR timerMessage Timer
     labelMessage.Caption = ''
     timerMessage.Enabled = *False  
 ENDSR
 
+// Compare a given name to the name on the given row of the subfile. This is used to 
+// determine if the subfile needs to move rows if a name is updated in place. 
 BegFunc CompareNameToSubfileRowName Type(*Boolean) 
     DclSrParm RRN Type(*Integer) Len(4) 
     DclSrParm CMName Type(*String) 
 
     Chain sbfCust Key(RRN) 
+    // Note how the return value is the result of the boolean expression.
     LeaveSr Value(sbfCust_CMname = CMName)
 EndFunc 
 
@@ -1195,19 +1196,37 @@ BegSr CustomerUpdateWithForm
     DclFld Updated Type(*Char) Len(1) 
     DclFld CurrentRow Type(*Integer) Len(4) 
 
+    // Save the current subfile row to restore the row 
+    // position after the update operation. 
     CurrentRow = sbfCust.Row 
 
+    // Call the form passing it three parameters (which are passed 
+    // by reference).
     Call pgm('formCustCRUD') 
         DclParm sbfCust_CMCustNo 
         DclParm CMName
         DclParm Updated
 
+    // If an update was performed with the form...
     If Updated = RECORD_UPDATED 
+        // If the name didn't change, refresh the subfile and 
+        // reposition its row back to its previous position.
         If CompareNameToSubfileRowName(CurrentRow + 1, CMName)
-            sbfCust_Refresh(*Blanks) 
+            // Refresh the subfile from its first row. 
+            sbfCust_Refresh(REFRESH_FROM_FIRST_ROW) 
+            // Give that first row focus. 
             sbfCust_GoToRow(CurrentRow)    
         Else 
+            // Otherwise, refresh from the given name. 
             sbfCust_Refresh(CMName)   
         EndIf 
     EndIf
 ENDSR
+
+// ### Creating images for AVR class'c image control. 
+// The [FontAwesome](https://fontawesome.com/icons) site provides free SVG 
+// images for Web development. SVG images aren't much help to AVR Classic, 
+// but the [fa2png](http://fa2png.io/) site freely translates a FontAwesome
+// SVG to a PNG. Create a 32px PNG with the fa2png site, then use MS Paint 
+// to save that PNG as a JPG. (AVR Classic's Image control doesn't work with 
+// PNG files. 

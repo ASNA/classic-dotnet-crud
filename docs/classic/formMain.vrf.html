@@ -125,7 +125,9 @@ in the subfile.  </p>
       <p>This constant idenfies the (zero-based) first row in the subfile.  </p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="nx">DclConst</span> <span class="nx">TOP_ROW</span> <span class="nx">Value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></pre></div>
+      <div class="highlight"><pre><span class="nx">DclConst</span> <span class="nx">TOP_ROW</span> <span class="nx">Value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> 
+
+<span class="nx">DclConst</span> <span class="nx">REFRESH_FROM_FIRST_ROW</span> <span class="nx">Value</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -449,7 +451,7 @@ When chaining to the subfile with the subfile Row property, be sure to add
 one to it to 'translate' it to the corresponding one-based RRN.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="nx">Chain</span> <span class="nx">sbfCust</span> <span class="nx">Key</span><span class="p">(</span><span class="nx">sbfCust</span><span class="p">.</span><span class="nx">Rodw</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">NotFnd</span><span class="p">(</span><span class="o">*</span><span class="nx">In50</span><span class="p">)</span></pre></div>
+      <div class="highlight"><pre>    <span class="nx">Chain</span> <span class="nx">sbfCust</span> <span class="nx">Key</span><span class="p">(</span><span class="nx">sbfCust</span><span class="p">.</span><span class="nx">Row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">NotFnd</span><span class="p">(</span><span class="o">*</span><span class="nx">In50</span><span class="p">)</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -1218,7 +1220,7 @@ back to this row after refreshing. </p>
 the subfile's first record.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="nx">If</span> <span class="nx">CMName</span> <span class="o">=</span> <span class="o">*</span><span class="nx">Blanks</span>   
+      <div class="highlight"><pre>    <span class="nx">If</span> <span class="nx">CMName</span> <span class="o">=</span> <span class="nx">REFRESH_FROM_FIRST_ROW</span>
         <span class="nx">Chain</span> <span class="nx">sbfCust</span> <span class="nx">Key</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> 
         <span class="nx">SetLL</span> <span class="nx">Cust</span> <span class="nx">Key</span><span class="p">(</span><span class="nx">sbfCust_CMName</span><span class="p">)</span>         
     <span class="nx">Else</span></pre></div>
@@ -1292,7 +1294,7 @@ for the corresponding subfile page actions. </p>
     </div>
     <div class='code'>
       <div class="highlight"><pre>    <span class="nx">If</span> <span class="nx">KeyAscii</span> <span class="o">=</span> <span class="nx">ESCAPE_KEY</span>         
-        <span class="nx">sbfCust_Refresh</span><span class="p">(</span><span class="o">*</span><span class="nx">BLANKS</span><span class="p">)</span> 
+        <span class="nx">sbfCust_Refresh</span><span class="p">(</span><span class="nx">REFRESH_FROM_FIRST_ROW</span><span class="p">)</span> 
     <span class="nx">EndIf</span></pre></div>
     </div>
   </div>
@@ -1571,6 +1573,179 @@ key value on the last row displayed. </p>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-102'>#</a>
       </div>
+      <p>Set the labelMessage control's <code>Caption</code> property and enable 
+the timerMessage timer control. When it expires the message is cleared. </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nx">BegSr</span> <span class="nx">SetMessageText</span>
+    <span class="nx">DclSrParm</span> <span class="nx">Text</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">String</span><span class="p">)</span> 
+
+    <span class="nx">labelMessage</span><span class="p">.</span><span class="nx">Caption</span> <span class="o">=</span> <span class="nx">Text</span> 
+    <span class="nx">timerMessage</span><span class="p">.</span><span class="nx">Enabled</span> <span class="o">=</span> <span class="o">*</span><span class="nx">True</span> 
+<span class="nx">EndSr</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-103'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-103'>#</a>
+      </div>
+      <p>This event handler fires when the timerMessage control's interval (its 
+elaspsed time in milliseconds). This clears the labelMessage control's caption.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nx">BEGSR</span> <span class="nx">timerMessage</span> <span class="nx">Timer</span>
+    <span class="nx">labelMessage</span><span class="p">.</span><span class="nx">Caption</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="nx">timerMessage</span><span class="p">.</span><span class="nx">Enabled</span> <span class="o">=</span> <span class="o">*</span><span class="nx">False</span>  
+<span class="nx">ENDSR</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-104'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-104'>#</a>
+      </div>
+      <p>Compare a given name to the name on the given row of the subfile. This is used to 
+determine if the subfile needs to move rows if a name is updated in place. </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nx">BegFunc</span> <span class="nx">CompareNameToSubfileRowName</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">Boolean</span><span class="p">)</span> 
+    <span class="nx">DclSrParm</span> <span class="nx">RRN</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Integer</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> 
+    <span class="nx">DclSrParm</span> <span class="nx">CMName</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">String</span><span class="p">)</span> 
+
+    <span class="nx">Chain</span> <span class="nx">sbfCust</span> <span class="nx">Key</span><span class="p">(</span><span class="nx">RRN</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-105'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-105'>#</a>
+      </div>
+      <p>Note how the return value is the result of the boolean expression.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="nx">LeaveSr</span> <span class="nx">Value</span><span class="p">(</span><span class="nx">sbfCust_CMname</span> <span class="o">=</span> <span class="nx">CMName</span><span class="p">)</span>
+<span class="nx">EndFunc</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-106'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-106'>#</a>
+      </div>
+      <p>Call form to update customer. </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="nx">BegSr</span> <span class="nx">CustomerUpdateWithForm</span>
+    <span class="nx">DclFld</span> <span class="nx">CMName</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Char</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> 
+    <span class="nx">DclFld</span> <span class="nx">Updated</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Char</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> 
+    <span class="nx">DclFld</span> <span class="nx">CurrentRow</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Integer</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-107'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-107'>#</a>
+      </div>
+      <p>Save the current subfile row to restore the row 
+position after the update operation. </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="nx">CurrentRow</span> <span class="o">=</span> <span class="nx">sbfCust</span><span class="p">.</span><span class="nx">Row</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-108'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-108'>#</a>
+      </div>
+      <p>Call the form passing it three parameters (which are passed 
+by reference).</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="nx">Call</span> <span class="nx">pgm</span><span class="p">(</span><span class="s1">&#39;formCustCRUD&#39;</span><span class="p">)</span> 
+        <span class="nx">DclParm</span> <span class="nx">sbfCust_CMCustNo</span> 
+        <span class="nx">DclParm</span> <span class="nx">CMName</span>
+        <span class="nx">DclParm</span> <span class="nx">Updated</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-109'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-109'>#</a>
+      </div>
+      <p>If an update was performed with the form...</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="nx">If</span> <span class="nx">Updated</span> <span class="o">=</span> <span class="nx">RECORD_UPDATED</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-110'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-110'>#</a>
+      </div>
+      <p>If the name didn't change, refresh the subfile and 
+reposition its row back to its previous position.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="nx">If</span> <span class="nx">CompareNameToSubfileRowName</span><span class="p">(</span><span class="nx">CurrentRow</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">CMName</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-111'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-111'>#</a>
+      </div>
+      <p>Refresh the subfile from its first row. </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="nx">sbfCust_Refresh</span><span class="p">(</span><span class="nx">REFRESH_FROM_FIRST_ROW</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-112'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-112'>#</a>
+      </div>
+      <p>Give that first row focus. </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="nx">sbfCust_GoToRow</span><span class="p">(</span><span class="nx">CurrentRow</span><span class="p">)</span>    
+        <span class="nx">Else</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-113'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-113'>#</a>
+      </div>
+      <p>Otherwise, refresh from the given name. </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="nx">sbfCust_Refresh</span><span class="p">(</span><span class="nx">CMName</span><span class="p">)</span>   
+        <span class="nx">EndIf</span> 
+    <span class="nx">EndIf</span>
+<span class="nx">ENDSR</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-114'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-114'>#</a>
+      </div>
       <h3>Creating images for AVR class'c image control.</h3>
 <p>The <a href="https://fontawesome.com/icons">FontAwesome</a> site provides free SVG 
 images for Web development. SVG images aren't much help to AVR Classic, 
@@ -1580,59 +1755,7 @@ to save that PNG as a JPG. (AVR Classic's Image control doesn't work with
 PNG files. </p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="nx">BegSr</span> <span class="nx">SetMessageText</span>
-    <span class="nx">DclSrParm</span> <span class="nx">Text</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">String</span><span class="p">)</span> 
-
-    <span class="nx">labelMessage</span><span class="p">.</span><span class="nx">Caption</span> <span class="o">=</span> <span class="nx">Text</span> 
-    <span class="nx">timerMessage</span><span class="p">.</span><span class="nx">Enabled</span> <span class="o">=</span> <span class="o">*</span><span class="nx">True</span> 
-<span class="nx">EndSr</span>
-
-<span class="nx">BEGSR</span> <span class="nx">timerMessage</span> <span class="nx">Timer</span>
-    <span class="nx">labelMessage</span><span class="p">.</span><span class="nx">Caption</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-    <span class="nx">timerMessage</span><span class="p">.</span><span class="nx">Enabled</span> <span class="o">=</span> <span class="o">*</span><span class="nx">False</span>  
-<span class="nx">ENDSR</span>
-
-<span class="nx">BegFunc</span> <span class="nx">CompareNameToSubfileRowName</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">Boolean</span><span class="p">)</span> 
-    <span class="nx">DclSrParm</span> <span class="nx">RRN</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Integer</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> 
-    <span class="nx">DclSrParm</span> <span class="nx">CMName</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nb">String</span><span class="p">)</span> 
-
-    <span class="nx">Chain</span> <span class="nx">sbfCust</span> <span class="nx">Key</span><span class="p">(</span><span class="nx">RRN</span><span class="p">)</span> 
-    <span class="nx">LeaveSr</span> <span class="nx">Value</span><span class="p">(</span><span class="nx">sbfCust_CMname</span> <span class="o">=</span> <span class="nx">CMName</span><span class="p">)</span>
-<span class="nx">EndFunc</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-103'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-103'>#</a>
-      </div>
-      <p>Call form to update customer. </p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre><span class="nx">BegSr</span> <span class="nx">CustomerUpdateWithForm</span>
-    <span class="nx">DclFld</span> <span class="nx">CMName</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Char</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> 
-    <span class="nx">DclFld</span> <span class="nx">Updated</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Char</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> 
-    <span class="nx">DclFld</span> <span class="nx">CurrentRow</span> <span class="nx">Type</span><span class="p">(</span><span class="o">*</span><span class="nx">Integer</span><span class="p">)</span> <span class="nx">Len</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> 
-
-    <span class="nx">CurrentRow</span> <span class="o">=</span> <span class="nx">sbfCust</span><span class="p">.</span><span class="nx">Row</span> 
-
-    <span class="nx">Call</span> <span class="nx">pgm</span><span class="p">(</span><span class="s1">&#39;formCustCRUD&#39;</span><span class="p">)</span> 
-        <span class="nx">DclParm</span> <span class="nx">sbfCust_CMCustNo</span> 
-        <span class="nx">DclParm</span> <span class="nx">CMName</span>
-        <span class="nx">DclParm</span> <span class="nx">Updated</span>
-
-    <span class="nx">If</span> <span class="nx">Updated</span> <span class="o">=</span> <span class="nx">RECORD_UPDATED</span> 
-        <span class="nx">If</span> <span class="nx">CompareNameToSubfileRowName</span><span class="p">(</span><span class="nx">CurrentRow</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">CMName</span><span class="p">)</span>
-            <span class="nx">sbfCust_Refresh</span><span class="p">(</span><span class="o">*</span><span class="nx">Blanks</span><span class="p">)</span> 
-            <span class="nx">sbfCust_GoToRow</span><span class="p">(</span><span class="nx">CurrentRow</span><span class="p">)</span>    
-        <span class="nx">Else</span> 
-            <span class="nx">sbfCust_Refresh</span><span class="p">(</span><span class="nx">CMName</span><span class="p">)</span>   
-        <span class="nx">EndIf</span> 
-    <span class="nx">EndIf</span>
-<span class="nx">ENDSR</span>
-
-</pre></div>
+      <div class="highlight"><pre></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
