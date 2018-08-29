@@ -20,7 +20,7 @@ INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
 ENDPROP
 INITPROP NAME(StartUpPosition) TYPE(*INTEGER2) VALUE(1)
 INITPROP NAME(CreationID) TYPE(*BASICSTRING) VALUE('{BE755B52-EDC3-4801-AA40-8FE751378CD2}')
-INITPROP NAME(ModifiedID) TYPE(*BASICSTRING) VALUE('{F9B0894D-8905-4D5F-A5BC-37DFB491D15B}')
+INITPROP NAME(ModifiedID) TYPE(*BASICSTRING) VALUE('{6F885C15-30D5-4505-8D4F-3A1130026A91}')
 DCLMENU PARENT(formMain) // mnuForm1
 INITPROP NAME(_Version) TYPE(*INTEGER4) VALUE(131176)
 INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('mnuForm1')
@@ -401,15 +401,6 @@ INITPROP NAME(_ExtentY) TYPE(*INTEGER4) VALUE(476)
 INITPROP NAME(_StockProps) TYPE(*INTEGER4) VALUE(111)
 INITPROP NAME(Caption) TYPE(*BASICSTRING) VALUE('subfile row color 1')
 INITPROP NAME(BackColor) TYPE(*INTEGER4) VALUE(16777215)
-DCLPROP NAME(Font) TYPE(*BLOBPROPSET) CLSID('{0BE35203-8F91-11CE-9DE3-00AA004BB851}')
-INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('MS Sans Serif')
-INITPROP NAME(Size) TYPE(*CURRENCY) VALUE('9.75')
-INITPROP NAME(Charset) TYPE(*INTEGER2) VALUE(0)
-INITPROP NAME(Weight) TYPE(*INTEGER2) VALUE(400)
-INITPROP NAME(Underline) TYPE(*BOOLEAN) VALUE(0)
-INITPROP NAME(Italic) TYPE(*BOOLEAN) VALUE(0)
-INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
-ENDPROP
 DCLCTL CLSID('{9A541647-88B8-11CF-A6E2-00801E0111FB}') PARENT(formMain) // labelEvenRowColor
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
 INITPROP NAME(_PersistType) TYPE(*INTEGER2) VALUE(3)
@@ -430,15 +421,6 @@ INITPROP NAME(_ExtentY) TYPE(*INTEGER4) VALUE(476)
 INITPROP NAME(_StockProps) TYPE(*INTEGER4) VALUE(111)
 INITPROP NAME(Caption) TYPE(*BASICSTRING) VALUE('subfile row color 2')
 INITPROP NAME(BackColor) TYPE(*INTEGER4) VALUE(16317915)
-DCLPROP NAME(Font) TYPE(*BLOBPROPSET) CLSID('{0BE35203-8F91-11CE-9DE3-00AA004BB851}')
-INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('MS Sans Serif')
-INITPROP NAME(Size) TYPE(*CURRENCY) VALUE('9.75')
-INITPROP NAME(Charset) TYPE(*INTEGER2) VALUE(0)
-INITPROP NAME(Weight) TYPE(*INTEGER2) VALUE(400)
-INITPROP NAME(Underline) TYPE(*BOOLEAN) VALUE(0)
-INITPROP NAME(Italic) TYPE(*BOOLEAN) VALUE(0)
-INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
-ENDPROP
 DCLCTL CLSID('{9A541643-88B8-11CF-A6E2-00801E0111FB}') PARENT(formMain) // imagePreviousPage
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
 INITPROP NAME(_PersistType) TYPE(*INTEGER2) VALUE(3)
@@ -525,15 +507,6 @@ INITPROP NAME(_ExtentX) TYPE(*INTEGER4) VALUE(1773)
 INITPROP NAME(_ExtentY) TYPE(*INTEGER4) VALUE(476)
 INITPROP NAME(_StockProps) TYPE(*INTEGER4) VALUE(111)
 INITPROP NAME(Caption) TYPE(*BASICSTRING) VALUE('[Message]')
-DCLPROP NAME(Font) TYPE(*BLOBPROPSET) CLSID('{0BE35203-8F91-11CE-9DE3-00AA004BB851}')
-INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('MS Sans Serif')
-INITPROP NAME(Size) TYPE(*CURRENCY) VALUE('9.75')
-INITPROP NAME(Charset) TYPE(*INTEGER2) VALUE(0)
-INITPROP NAME(Weight) TYPE(*INTEGER2) VALUE(400)
-INITPROP NAME(Underline) TYPE(*BOOLEAN) VALUE(0)
-INITPROP NAME(Italic) TYPE(*BOOLEAN) VALUE(0)
-INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
-ENDPROP
 INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(-1)
 DCLCTL CLSID('{8DC04C91-E0F4-11CF-9EDA-00A024D72D2B}') PARENT(formMain) // timerMessage
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
@@ -577,27 +550,25 @@ END
 // #### [Show controls list and their properties.](formMain.vrf.controls.html)
 // [See file schema here.](http://1clickurls.com/yT1m-Mq)
 //
-// ![](screen-shot-01.png?4)
-//
+// ![](screen-shot-01.png?4)<br>
 // <small>The subfile display</small>
 // 
-// ![](screen-shot-02.png?4)
-//
+// ![](screen-shot-02.png?4)<br>
 // <small>The update panel</small>
 // 
 // This program shows a simple page-at-a-time subfile that would be used 
 // for navigation through a file. Once a row is located, the user would initiate 
 // an action. That action isn't shown in the is example; this example focuses on 
 // populating and navigating the subfile. 
-// 90, 88 89
-// 195, 195, 195
+// disabled: 90, 88, 89
+// backcolor: 195, 195, 195
 
 // ---
 
-
-// Files opened for update aren't blocked like input files are. Therefore it's best
+// Files opened for update aren't blocked like input files are. Therefore it's always best
 // to use input files (which are blocked by default with AVR) for populating lists
 // (such as subfiles and comboboxes). 
+// The `Prefix` is a bit of a hack that provides fully-qualified field names.
 DclDiskFile  Name(Cust) +
              Type(*INPUT) +
              Org(*INDEXED) +
@@ -608,8 +579,8 @@ DclDiskFile  Name(Cust) +
              FileDesc('Examples/CMastNewL2') +
              DBDesc('*PUBLIC/DG NET Local') 
 
-// This file is opened for update. When reads are made against this file that don't 
-// perform an immediate update the `Unlock` opcode is used to unlock the record.  
+// This file is opened for update. When reads are made against this file that aren't 
+// followed with a (nearly) immediate write, the `Unlock` opcode is used to unlock the record.  
 DclDiskFile  Name(CustUpdate) +
              Type(*Update) +
              Org(*INDEXED) +
@@ -631,9 +602,10 @@ DclDiskFile  Name(CustUpdate) +
 //-                  DBDesc('*PUBLIC/DG NET Local') +
 //-                 Prefix(SbfCust_)
 
-// This value controls how many rows are presented
+// This constant controls how many rows are presented
 // in the subfile.  
 DclConst SUBFILE_ROWS Value(12)
+// This constant idenfies the (zero-based) first row in the subfile.  
 DclConst TOP_ROW Value(0) 
 
 // Labels on forms that have empty captions are very hard to work with
@@ -650,6 +622,15 @@ sbfCust_ShowFirstPage()
  
 // End of mainline.
 
+
+//---
+// Naming conventions:
+// * _sbfCust.<method name>:_ Methods provided intrinsically by the subfile.
+// * _sbfCust.<property name>:_ Properties provided intrinsically by the subfile.
+// * _sbfCust_<method name>:_ Methods that manipulate the subfile provided in this program.
+// * _sbfCust_<field name>:_ Fields that describe or control the subfile provided in this program.
+//---
+
 // First page requested.
 BEGSR imageFirstPage Click
     sbfCust_ShowFirstPage() 
@@ -657,13 +638,17 @@ ENDSR
 
 // Next page requested.
 BEGSR imageNextPage Click
+    // Read the last populated row of the subfile.
     Chain sbfCust Key(sbfCust.RowCount)
+    // Move the file pointer to next record after the one
+    // in the last row. 
     SetGT Cust Key(sbfCust_CMName) 
-    sbfCust_ShowNextPage()
+    // Show the next page. 
+    sbfCust_ShowPage()
 ENDSR
 
 // Previous page requested. 
-BEGSR imagePreviousPage Click   
+BEGSR imagePreviousPage Click       
     sbfCust_ShowPreviousPage()
 ENDSR
 
@@ -707,6 +692,8 @@ BegSr textboxPositionTo KeyPress
     // Watch for an Enter keypress when ioPosition has 
     // focus. End the keypress event handler by setting 
     // KeyAscii to EAT_KEY (0) and then position the subfile.  
+    // EAT_KEY keeps the Windows event loop from further 
+    // processing this keypress.
     If (KeyAscii = ENTER_KEY)
         KeyAscii = EAT_KEY
         sbfCust_PositionTo(textboxPositionTo.Value)
@@ -714,16 +701,20 @@ BegSr textboxPositionTo KeyPress
     EndIf
 EndSr
 
-// The current row changed in the subfile. 
+// The current row changed in the subfile with either the 
+// arrow keys, the mouse cursor, or programatically.  
 BegSr sbfCust RecSwitch
+    // FromRec is the zero-based row number from which the subfile is switching.
     DclSrParm FromRec  Type(*INTEGER) LEN(4)
  
-    // Read subfile record on every subfile record switch to have
-    // that subfile row's fields available.  The AVR Classic subfile reports 
-    // zero-based row and column values, and the subfile RRN is one based. 
+    // Each time a row position is changed the customer info panel at the
+    // top left of the screen is refreshed with customer info for the 
+    // current subfile record. 
+    // AVR Classic's subfile reports zero-based Row and Col properties, but the 
+    // subfile RRN is one based. 
     // When chaining to the subfile with the subfile Row property, be sure to add 
-    // one to it to 'translate' it to the corresponding RRN.
-    Chain sbfCust Key(sbfCust.Row + 1) NotFnd(*In50)
+    // one to it to 'translate' it to the corresponding one-based RRN.
+    Chain sbfCust Key(sbfCust.Rodw + 1) NotFnd(*In50)
  
     // Populate customer info panel with fields from the 
     // just-read subfile row. 
@@ -748,6 +739,9 @@ BegSr sbfCust SelChanging
         sbfCust_GoToRow(TOP_ROW)
     EndIf
 
+    // The subfile header is row -1 (go figure!) and that means that
+    // at initial program startup subCust.SelStartRow can be less than 
+    // zero. Leave this routine is that's the case.     
     If sbfCust.SelStartRow < 0 
         sbfCust.SetFocus()
         LeaveSr
@@ -786,7 +780,7 @@ EndSr
 
 // Double-click on a subfile row to select it for update.     
 BEGSR sbfCust DoubleClick
-    AttemptFullCustomerUpdate()
+    CustomerUpdateWithForm()
 EndSr 
 
 // Clear the subfile and set its RRN to zero--making it ready for a 
@@ -800,27 +794,45 @@ EndSr
 // Show first page of subfile.
 BegSr sbfCust_ShowFirstPage
     // Position file at top of file.
-    SetLL Cust Key(*Start) 
-    sbfCust_ShowNextPage()
+    SetLL Cust Key(*Start)
+    // Show the subfile page.
+    sbfCust_ShowPage()
 EndSr
 
-// Show next page of subfile. 
-BegSr sbfCust_ShowNextPage
+// Show a page of subfile. 
+BegSr sbfCust_ShowPage
     // Fill sbfCust with next group of rows from Cust's current 
-    // file pointer position.
+    // file pointer position. This subroutine is called by all 
+    // other page operations (first, previous, next, and last) 
+    // to populate the subfile.
+    // Having this one routine to populate the subfile provides 
+    // one place where all of the housekeeping needed after 
+    // writing a page to the subfile can be done. 
 
+    // Clear the subfile.
     sbfCust_Initialize()
 
+    // This is a page-at-a-time subfile. The SUBFILE_ROWS constants
+    // defines how many rows are written to the subfile.
     Do FromVal(1) ToVal(SUBFILE_ROWS)
         Read Cust
+        // If %EOF(Cust) then you've run out of records to 
+        // put in the subfile.
         If (%EOF(Cust))
             Leave
         EndIf
+
+        // Increment the subfile RRN property.
+        sbfCust_RRN = sbfCust.RowCount + 1 
+        // Assign fields to the subfile from the just-read 
+        // recoord format. 
         sbfCust_AssignFields()
+
         // Write the subfile row.
         Write sbfCust
 
-        SetRowColor(sbfCust_RRN - 1)
+        // Zebra stripe the subfile.             
+        SetRowColor(sbfCust_RRN)
     EndDo
 
     // Set the enabled/disabled status of the 
@@ -843,11 +855,10 @@ BegSr sbfCust_ShowPreviousPage
     SetLL Cust Key(sbfCust_CMName) Err(*Extended) 
     // Read backwards from there. 
     ReadCustOnePageBackwards()
-
    
     // Having read backwards a number of rows and then 
     // show the page. 
-    sbfCust_ShowNextPage()
+    sbfCust_ShowPage()
 EndSr
 
 // Show last page of subfile.
@@ -858,13 +869,11 @@ BegSr sbfCust_ShowLastPage
     ReadCustOnePageBackwards()
     // Having read backwards a number of rows and then 
     // show the page. 
-    sbfCust_ShowNextPage()
+    sbfCust_ShowPage()
 EndSr 
 
 BegSr sbfCust_AssignFields
-    // Assign fields from the Cust file to the 
-    // subfile. 
-    sbfCust_RRN = sbfCust.RowCount + 1
+    // Assign fields from the Cust file to the subfile. 
     sbfCust_CMCustNo = Cust_CMCustNo 
     sbfCust_CMName = Cust_CMName
     sbfCust_CMAddr1 = Cust_CMAddr1
@@ -883,11 +892,11 @@ BegSr sbfCust_GoToRow
     // fails. Wrapping it an Eval statement and using 
     // Err(*Extended) 'eats' the error letting Select method 
     // fail silently. 
+
     // You need to provide a zero-based row and column to the 
     // Select method. Zero is the top row and zero is the left-most 
     // column. Constants are used to avoid using "magic numbers" 
     // that be confusing later. 
-
     Eval F2(sbfCust.Select(TargetRow, LEFT_MOST_COLUMN)) Err(*Extended)
 EndSr
  
@@ -900,7 +909,7 @@ BegFunc sbfCust_PositionTo Type(*Ind)
     SetLL Cust Key(PositionToName)
     If (%FOUND(Cust))
         // If so, show the next page from there.
-        sbfCust_ShowNextPage()        
+        sbfCust_ShowPage()        
         LeaveSr *True 
     Else
         // Otherwise, reselect the subfile's top row and 
@@ -940,7 +949,7 @@ BegSr sbfCust_Refresh
     Else 
         SetLL Cust Key(CMName)             
     EndIf         
-    sbfCust_ShowNextPage()
+    sbfCust_ShowPage()
     sbfCust_GoToRow(SaveRow)
 EndSr 
 
@@ -966,7 +975,7 @@ BEGSR sbfCust KeyPress
 
     Case Cond(KeyAscii = LOWER_F_KEY) Sr(sbfCust_ShowFirstPage) 
     Case Cond(KeyAscii = LOWER_P_KEY) Sr(sbfCust_ShowPreviousPage) 
-    Case Cond(KeyAscii = LOWER_N_KEY) Sr(sbfCust_ShowNextPage) 
+    Case Cond(KeyAscii = LOWER_N_KEY) Sr(sbfCust_ShowPage) 
     Case Cond(KeyAscii = LOWER_L_KEY) Sr(sbfCust_ShowLastPage) 
     EndCs
 ENDSR
@@ -1060,12 +1069,20 @@ EndSr
  
 // Set subfile row color.
 BegSr SetRowColor 
-    DclSrParm CurrentRow   Type(*Integer) Len(4)
+    DclSrParm SubfileRRN   Type(*Integer) Len(4)
 
-    If IsEven(CurrentRow)
-        sbfCust.RecBackColor[CurrentRow] = labelEvenRowColor.BackColor
+    DclFld SubfileRow Type(*Integer) Len(4) 
+
+    // The RRN is one-based--so adjust to zero-based to 
+    // reference a subfile row.
+    SubfileRow = SubfileRRN - 1
+
+    If IsEven(SubfileRow)
+        // The labelEvenRowColor and labelOddRowColor are purely for 
+        // the convenience of setting 
+        sbfCust.RecBackColor[SubfileRow] = labelEvenRowColor.BackColor
     Else
-        sbfCust.RecBackColor[CurrentRow] = labelOddRowColor.BackColor
+        sbfCust.RecBackColor[SubfileRow] = labelOddRowColor.BackColor
     EndIf
 EndSr
 
@@ -1125,7 +1142,7 @@ BegFunc CompareNameToSubfileRowName Type(*Boolean)
 EndFunc 
 
 // Call form to update customer. 
-BegSr AttemptFullCustomerUpdate
+BegSr CustomerUpdateWithForm
     DclFld CMName Type(*Char) Len(40) 
     DclFld Updated Type(*Char) Len(1) 
     DclFld CurrentRow Type(*Integer) Len(4) 
