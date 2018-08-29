@@ -20,7 +20,7 @@ INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
 ENDPROP
 INITPROP NAME(StartUpPosition) TYPE(*INTEGER2) VALUE(1)
 INITPROP NAME(CreationID) TYPE(*BASICSTRING) VALUE('{BE755B52-EDC3-4801-AA40-8FE751378CD2}')
-INITPROP NAME(ModifiedID) TYPE(*BASICSTRING) VALUE('{AC932AE1-5F0A-440E-8093-FD3BB3175F6D}')
+INITPROP NAME(ModifiedID) TYPE(*BASICSTRING) VALUE('{6ACDA94C-E8DB-42FF-8EB6-9748E0CF6130}')
 DCLMENU PARENT(formMain) // mnuForm1
 INITPROP NAME(_Version) TYPE(*INTEGER4) VALUE(131176)
 INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('mnuForm1')
@@ -401,6 +401,15 @@ INITPROP NAME(_ExtentY) TYPE(*INTEGER4) VALUE(476)
 INITPROP NAME(_StockProps) TYPE(*INTEGER4) VALUE(111)
 INITPROP NAME(Caption) TYPE(*BASICSTRING) VALUE('subfile row color 1')
 INITPROP NAME(BackColor) TYPE(*INTEGER4) VALUE(16777215)
+DCLPROP NAME(Font) TYPE(*BLOBPROPSET) CLSID('{0BE35203-8F91-11CE-9DE3-00AA004BB851}')
+INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('MS Sans Serif')
+INITPROP NAME(Size) TYPE(*CURRENCY) VALUE('9.74')
+INITPROP NAME(Charset) TYPE(*INTEGER2) VALUE(0)
+INITPROP NAME(Weight) TYPE(*INTEGER2) VALUE(400)
+INITPROP NAME(Underline) TYPE(*BOOLEAN) VALUE(0)
+INITPROP NAME(Italic) TYPE(*BOOLEAN) VALUE(0)
+INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
+ENDPROP
 DCLCTL CLSID('{9A541647-88B8-11CF-A6E2-00801E0111FB}') PARENT(formMain) // labelEvenRowColor
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
 INITPROP NAME(_PersistType) TYPE(*INTEGER2) VALUE(3)
@@ -421,6 +430,15 @@ INITPROP NAME(_ExtentY) TYPE(*INTEGER4) VALUE(476)
 INITPROP NAME(_StockProps) TYPE(*INTEGER4) VALUE(111)
 INITPROP NAME(Caption) TYPE(*BASICSTRING) VALUE('subfile row color 2')
 INITPROP NAME(BackColor) TYPE(*INTEGER4) VALUE(16317915)
+DCLPROP NAME(Font) TYPE(*BLOBPROPSET) CLSID('{0BE35203-8F91-11CE-9DE3-00AA004BB851}')
+INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('MS Sans Serif')
+INITPROP NAME(Size) TYPE(*CURRENCY) VALUE('9.74')
+INITPROP NAME(Charset) TYPE(*INTEGER2) VALUE(0)
+INITPROP NAME(Weight) TYPE(*INTEGER2) VALUE(400)
+INITPROP NAME(Underline) TYPE(*BOOLEAN) VALUE(0)
+INITPROP NAME(Italic) TYPE(*BOOLEAN) VALUE(0)
+INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
+ENDPROP
 DCLCTL CLSID('{9A541643-88B8-11CF-A6E2-00801E0111FB}') PARENT(formMain) // imagePreviousPage
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
 INITPROP NAME(_PersistType) TYPE(*INTEGER2) VALUE(3)
@@ -507,6 +525,15 @@ INITPROP NAME(_ExtentX) TYPE(*INTEGER4) VALUE(1773)
 INITPROP NAME(_ExtentY) TYPE(*INTEGER4) VALUE(476)
 INITPROP NAME(_StockProps) TYPE(*INTEGER4) VALUE(111)
 INITPROP NAME(Caption) TYPE(*BASICSTRING) VALUE('[Message]')
+DCLPROP NAME(Font) TYPE(*BLOBPROPSET) CLSID('{0BE35203-8F91-11CE-9DE3-00AA004BB851}')
+INITPROP NAME(Name) TYPE(*BASICSTRING) VALUE('MS Sans Serif')
+INITPROP NAME(Size) TYPE(*CURRENCY) VALUE('9.74')
+INITPROP NAME(Charset) TYPE(*INTEGER2) VALUE(0)
+INITPROP NAME(Weight) TYPE(*INTEGER2) VALUE(400)
+INITPROP NAME(Underline) TYPE(*BOOLEAN) VALUE(0)
+INITPROP NAME(Italic) TYPE(*BOOLEAN) VALUE(0)
+INITPROP NAME(Strikethrough) TYPE(*BOOLEAN) VALUE(0)
+ENDPROP
 INITPROP NAME(AutoSize) TYPE(*BOOLEAN) VALUE(-1)
 DCLCTL CLSID('{8DC04C91-E0F4-11CF-9EDA-00A024D72D2B}') PARENT(formMain) // timerMessage
 INITPROP NAME(Version) TYPE(*INTEGER4) VALUE(131181)
@@ -630,6 +657,11 @@ sbfCust_ShowFirstPage()
 // * _sbfCust.[property name]:_ Properties provided intrinsically by the subfile.
 // * _sbfCust_[method name]:_ Methods that manipulate the subfile provided in this program.
 // * _sbfCust_[field name]:_ Fields that describe or control the subfile provided in this program.
+
+// Notes:
+//
+// * Set sbfCust.Browse to False to be able to edit a subfile row in place. Note that 
+// sbfCust.Browse is a design-time property only--you can't change it at runtime.   
 
 // ---
 
@@ -943,15 +975,22 @@ BegSr sbfCust_Refresh
 
     DclFld SaveRow Type(*Integer) Len(4)
 
+    // Save the current subfile row for repositioning 
+    // back to this row after refreshing. 
     SaveRow = sbfCust.Row 
 
+    // If the name passed is blanks, then refresh from 
+    // the subfile's first record.
     If CMName = *Blanks   
         Chain sbfCust Key(1) 
         SetLL Cust Key(sbfCust_CMName)         
     Else 
+    // If a name is provided, refresh from that name. 
         SetLL Cust Key(CMName)             
     EndIf         
+    // Show the page. 
     sbfCust_ShowPage()
+    // Put the selected row back where it was. 
     sbfCust_GoToRow(SaveRow)
 EndSr 
 
@@ -971,10 +1010,16 @@ BEGSR sbfCust KeyPress
         sbfCust_Refresh(*BLANKS) 
     EndIf 
 
+    // The subfile's Browse property controls where the subfile 
+    // is browse-only (as opposed to being editable. If it is editable,
+    // leave the subroutine now because the speed keys don't work with
+    // an editable subfile. 
     If sbfCust.Browse = *False 
         LeaveSr
     EndIf 
 
+    // Speed keys for subfile navigation. Note the subfile needs 
+    // to be focused for these to work. 
     Case Cond(KeyAscii = LOWER_F_KEY) Sr(sbfCust_ShowFirstPage) 
     Case Cond(KeyAscii = LOWER_P_KEY) Sr(sbfCust_ShowPreviousPage) 
     Case Cond(KeyAscii = LOWER_N_KEY) Sr(sbfCust_ShowPage) 
@@ -1022,6 +1067,7 @@ BegSr SetRightButtonsStatus
     EndIf  
 EndSr 
 
+// Update the customer record from the currently editable row. 
 BegFunc UpdateCustomer Type(*Boolean) 
     DclSrParm CustomerNumber Type(*Integer) Len(4) 
 
